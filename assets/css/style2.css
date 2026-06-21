@@ -1,0 +1,211 @@
+ 
+:root {
+
+    --gold: #D4AF37;
+    --black: #000000;
+    --white: #ffffff;
+
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+
+}
+/* NAVBAR */ 
+
+.navbar {
+    background: rgba(0, 0, 0, .85);
+    backdrop-filter: blur(3px);
+    padding: 0px 0;
+}
+
+.navbar .container {
+    max-width: 1200px;
+}
+
+.navbar-brand {
+
+    text-decoration: none;
+
+}
+
+.logo-img {
+
+    height: 60px;
+    width: auto;
+
+    object-fit: contain;
+
+}
+
+.logo-text {
+
+    margin-left: 12px;
+
+    color: #fff;
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    margin-left: 15px;
+}
+
+/* Dropdown Menu */
+
+.dropdown-menu {
+    background: #000;
+    border: 1px solid #D4AF37;
+    border-radius: 0;
+    min-width: 240px;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    color: #fff;
+    padding: 12px 18px;
+    transition: all .3s ease;
+    border-bottom: 1px solid rgba(212, 175, 55, .2);
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #D4AF37;
+    color: #000;
+}
+
+.nav-link.dropdown-toggle::after {
+    margin-left: 8px;
+}
+
+/* Desktop Hover Dropdown */
+
+@media (min-width: 992px) {
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+}
+
+
+
+/* Hero Section */
+
+.courses-hero {
+
+    min-height: 70vh;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, .75),
+            rgba(0, 0, 0, .75)),
+
+        url('assets/images/hero/registration.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+
+}
+
+.courses-hero-content {
+
+    max-width: 800px;
+
+}
+
+.courses-hero span {
+
+    color: #D4AF37;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+}
+
+.courses-hero h1 {
+
+    font-size: 60px;
+    font-weight: 700;
+
+    margin: 20px 0;
+
+}
+
+.courses-hero p {
+
+    font-size: 18px;
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+
+}
+
+@media(max-width:768px) {
+
+    .courses-hero h1 {
+
+        font-size: 38px;
+
+    }
+
+}
+
+.programs-section{
+
+    padding:120px 0;
+
+}
+
+.program-card{
+
+    background:white;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+}
+
+.program-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.program-card h4{
+
+    font-size:22px;
+    font-weight:700;
+
+}
