@@ -204,13 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const details = card.querySelector(".program-details");
 
-            details.classList.toggle("active");
+            console.log("clicked");
+            console.log(details);
 
-            if(details.classList.contains("active")){
-                button.textContent = "Hide Details";
-            }else{
-                button.textContent = "View Details";
-            }
+            details.classList.toggle("active");
 
         });
 
