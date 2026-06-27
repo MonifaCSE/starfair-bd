@@ -29,7 +29,7 @@
 
     <!-- Custom CSS -->
 
-    <link rel="stylesheet" href="assets/css/event.css">
+    <link rel="stylesheet" href="assets/css/magazine.css">
 
 </head>
 
@@ -78,7 +78,7 @@
                             <ul class="dropdown-menu" aria-labelledby="eventsDropdown">
 
                                 <li>
-                                    <a class="dropdown-item active" href="kids-modelling.html">
+                                    <a class="dropdown-item" href="kids-modelling.html">
                                         Kids Modelling
                                     </a>
                                 </li>
@@ -126,7 +126,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link active" href="magazine.html">
                                 Magazine
                             </a>
                         </li>
@@ -138,7 +138,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="contact.html">
                                 Contact
                             </a>
                         </li>
@@ -154,8 +154,230 @@
     </header>
 
     <!-- HEADER END -->
+    <!-- =========================
+MAGAZINE HERO START
+========================== -->
 
- 
+    <section class="magazine-hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <!-- Left -->
+
+                <div class="col-lg-6">
+
+                    <span class="hero-subtitle">
+
+                        STAR FAIR MAGAZINE
+
+                    </span>
+
+                    <h1>
+
+                        Fashion,
+                        Lifestyle &
+                        Cultural Magazine
+
+                    </h1>
+
+                    <p>
+
+                        Discover exclusive fashion editorials, celebrity interviews,
+                        lifestyle stories, beauty trends, cultural events and inspiring
+                        success stories from STAR FAIR Bangladesh.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#latest-issue" class="btn-gold">
+
+                            Read Latest Issue
+
+                        </a>
+
+                        <a href="assets/pdf/flipbook.pdf" class="btn-outline" download>
+
+                            Download PDF
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Right -->
+
+                <div class="col-lg-6 text-center">
+
+                    <div class="cover-box">
+
+                        <img src="assets/images/magazine/page1.jpg" alt="Magazine Cover">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+MAGAZINE HERO END
+========================== -->
+
+
+    <!-- =========================
+LATEST ISSUE START
+========================= -->
+
+    <section id="latest-issue" class="latest-issue">
+
+        <div class="container">
+
+            <div class="section-header text-center">
+
+                <span class="section-subtitle">
+                    LATEST ISSUE
+                </span>
+
+                <h2>
+                    STAR FAIR Magazine
+                </h2>
+
+                <p>
+
+                    Read the latest digital edition with an interactive
+                    page-flipping experience.
+
+                </p>
+
+            </div>
+
+            <div class="row align-items-center g-5">
+
+                <!-- FlipBook -->
+
+                <div class="col-lg-8">
+
+                    <div class="mag-toolbar">
+
+                        <button id="prevBtn">
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </button>
+
+                        <div class="page-status">
+
+                            <span id="pageIndicator">
+
+                                1 - 2
+
+                            </span>
+
+                            <small id="totalPages">
+
+                                / 0
+
+                            </small>
+
+                        </div>
+
+                        <button id="nextBtn">
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                    <div class="flipbook-wrapper">
+
+                        <div id="pdf-book"></div>
+
+                    </div>
+                    <audio id="flipSound">
+
+                        <source src="assets/sounds/page-flip.mp3">
+
+                    </audio>
+
+                </div>
+
+                <!-- Right Panel -->
+
+                <div class="col-lg-4">
+
+                    <div class="issue-card">
+
+                        <img src="assets/images/magazine/page1.jpg" alt="Magazine Cover">
+
+                        <h3>
+
+                            Volume 02
+
+                        </h3>
+
+                        <p>
+
+                            June 2026 Edition
+
+                        </p>
+
+                        <ul>
+
+                            <li>
+                                72 Pages
+                            </li>
+
+                            <li>
+                                Fashion Editorial
+                            </li>
+
+                            <li>
+                                Lifestyle
+                            </li>
+
+                            <li>
+                                Beauty
+                            </li>
+
+                            <li>
+                                Cultural Events
+                            </li>
+
+                        </ul>
+
+
+
+                        <a href="assets/pdf/flipbook.pdf" download class="download-btn">
+
+                            Download PDF
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+          
+        </div>
+
+    </section>
+
+    <!-- =========================
+LATEST ISSUE END
+========================= -->
+
+
     <!-- Bootstrap -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -172,7 +394,17 @@
     <!-- Main JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
-    <script src="assets/js/main.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    </script>
+
+    <script src="assets/js/magazine.js"></script>
+     
 
 </body>
 
