@@ -1,273 +1,141 @@
-const pdfUrl = "assets/pdf/flipbook.pdf";
+// =========================
+// MAGAZINE DATA
+// =========================
 
-let pdfDoc = null;
-
-let currentPage = 1;
-
-let zoom = 1.5;
-
-async function loadPDF() {
-
-    pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
-
-    renderSpread();
-
-}
-
-async function renderPage(pageNumber, container) {
-
-    const page = await pdfDoc.getPage(pageNumber);
-
-    const viewport = page.getViewport({
-
-        scale: zoom
-
-    });
-
-    const canvas = document.createElement("canvas");
-
-    const context = canvas.getContext("2d");
-
-    canvas.width = viewport.width;
-
-    canvas.height = viewport.height;
-
-    await page.render({
-
-        canvasContext: context,
-
-        viewport: viewport
-
-    }).promise;
-
-    container.innerHTML = "";
-
-    container.appendChild(canvas);
-
-}
-
-async function renderSpread() {
-
-    const book = document.getElementById("pdf-book");
-
-    book.innerHTML = "";
-
-    const left = document.createElement("div");
-
-    left.className = "page";
-
-    const right = document.createElement("div");
-
-    right.className = "page";
-
-    book.appendChild(left);
-
-    book.appendChild(right);
-
-    await renderPage(currentPage, left);
-
-    if (currentPage + 1 <= pdfDoc.numPages) {
-
-        await renderPage(currentPage + 1, right);
-
+const magazines = [
+    {
+        title: "Fashion Edition",
+        description: "Fashion, Beauty & Lifestyle",
+        folder: "issue/issue1",
+        totalPages: 6
+    },
+    {
+        title: "Beauty Edition",
+        description: "Beauty & Pageantry",
+        folder: "issue/issue2",
+        totalPages: 6
+    },
+    {
+        title: "Culture Edition",
+        description: "Culture & Art",
+        folder: "issue/issue3",
+        totalPages: 6
+    },
+    {
+        title: "Lifestyle Edition",
+        description: "Lifestyle & Events",
+        folder: "issue/issue4",
+        totalPages: 6
     }
-    updateIndicator();
-}
+];
 
-loadPDF();
+// =========================
+// STATE
+// =========================
 
+let pageFlip = null;
+const flipSound = document.getElementById("flipSound");
 
-const pages = document.querySelectorAll(".page");
+// =========================
+// BUTTON CLICKS
+// =========================
 
-pages.forEach(page => {
-
-    page.animate(
-
-        [
-
-            {
-
-                transform: "scale(.95)",
-
-                opacity: .6
-
-            },
-
-            {
-
-                transform: "scale(1)",
-
-                opacity: 1
-
-            }
-
-        ],
-
-        {
-
-            duration: 350,
-
-            easing: "ease"
-
-        }
-
-    );
-
+document.querySelectorAll(".issue-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const issue = magazines[parseInt(btn.dataset.issue)];
+        flipSound.currentTime = 0;
+        flipSound.play().catch(() => {});
+        loadMagazine(issue);
+        setTimeout(() => {
+            document.getElementById("viewer").scrollIntoView({ behavior: "smooth" });
+        }, 100);
+    });
 });
 
-// Total pages
+// =========================
+// LOAD MAGAZINE
+// =========================
 
-const totalPages = document.getElementById("totalPages");
+function loadMagazine(issue) {
+    document.getElementById("viewerTitle").textContent = issue.title;
+    document.getElementById("viewerDescription").textContent = issue.description;
 
-const indicator = document.getElementById("pageIndicator");
+    // Step 1: Kill existing PageFlip safely
+    if (pageFlip) {
+        try { pageFlip.destroy(); } catch(e) { console.warn("destroy error:", e); }
+        pageFlip = null;
+    }
 
-function updateIndicator() {
+    // Step 2: Get the viewer-box and fully reset it
+    const viewerBox = document.querySelector(".viewer-box");
+    viewerBox.innerHTML = "";  // Wipe EVERYTHING including the corrupted flipbook node
 
-    indicator.innerHTML =
+    // Step 3: Create a brand new flipbook wrapper
+    const newFlipbook = document.createElement("div");
+    newFlipbook.id = "flipbook";
+    viewerBox.appendChild(newFlipbook);
 
-        `${currentPage} - ${Math.min(currentPage + 1, pdfDoc.numPages)}`;
+    // Step 4: Force browser reflow so the element has real dimensions
+    void newFlipbook.offsetHeight;
 
-    totalPages.innerHTML = ` / ${pdfDoc.numPages}`;
+    // Step 5: Build pages
+    for (let i = 1; i <= issue.totalPages; i++) {
+        const page = document.createElement("div");
+        page.className = "page";
+        const img = document.createElement("img");
+        img.src = `assets/images/magazine/${issue.folder}/page${i}.jpg`;
+        img.alt = `Page ${i}`;
+        page.appendChild(img);
+        newFlipbook.appendChild(page);
+    }
 
+    // Step 6: Small delay so DOM settles, then init
+    setTimeout(() => {
+        initFlipbook();
+    }, 50);
 }
 
-// Render
+// =========================
+// INIT FLIPBOOK
+// =========================
 
-// updateIndicator();
+function initFlipbook() {
+    const el = document.getElementById("flipbook");
 
+    if (!el) {
+        console.error("flipbook element not found");
+        return;
+    }
 
-//Next button
+    try {
+        pageFlip = new St.PageFlip(el, {
+            width: 600,
+            height: 800,
+            size: "stretch",
+            showCover: true,
+            usePortrait: window.innerWidth < 768,
+            mobileScrollSupport: true,
+            drawShadow: true,
+            maxShadowOpacity: 0.6,
+            flippingTime: 900,
+            minWidth: 260,
+            maxWidth: 900,
+            minHeight: 350,
+            maxHeight: 900
+        });
 
-document
+        pageFlip.loadFromHTML(document.querySelectorAll("#flipbook .page"));
 
-    .getElementById("nextBtn")
+        pageFlip.on("flip", () => {
+            flipSound.currentTime = 0;
+            flipSound.volume = 0.4;
+            flipSound.play().catch(() => {});
+        });
 
-    .addEventListener("click", () => {
+        console.log("PageFlip initialized successfully");
 
-        if (currentPage + 1 <= pdfDoc.numPages) {
-
-            currentPage += 1;
-
-            renderSpread();
-
-            playFlip();
-
-        }
-
-    });
-
-// Previous
-
-document
-
-    .getElementById("prevBtn")
-
-    .addEventListener("click", () => {
-
-        if (currentPage > 1) {
-
-            currentPage -= 1;
-
-            renderSpread();
-
-            playFlip();
-
-        }
-
-    });
-
-// Flip sound
-
-const flipSound =
-
-    document.getElementById("flipSound");
-
-function playFlip() {
-
-    flipSound.currentTime = 0;
-
-    flipSound.play();
-
+    } catch(err) {
+        console.error("PageFlip init failed:", err);
+    }
 }
-
-
-// keyboard
-
-document.addEventListener(
-
-    "keydown",
-
-    e => {
-
-        if (e.key === "ArrowRight") {
-
-            document
-
-                .getElementById("nextBtn")
-
-                .click();
-
-        }
-
-        if (e.key === "ArrowLeft") {
-
-            document
-
-                .getElementById("prevBtn")
-
-                .click();
-
-        }
-
-    });
-
-// Mobile Swipe
-
-let startX = 0;
-
-const book = document.getElementById("pdf-book");
-
-book.addEventListener(
-
-    "touchstart",
-
-    e => {
-
-        startX = e.touches[0].clientX;
-
-    });
-
-book.addEventListener(
-
-    "touchend",
-
-    e => {
-
-        const endX = e.changedTouches[0].clientX;
-
-        const diff = endX - startX;
-
-        if (diff < -80) {
-
-            document
-
-                .getElementById("nextBtn")
-
-                .click();
-
-        }
-
-        if (diff > 80) {
-
-            document
-
-                .getElementById("prevBtn")
-
-                .click();
-
-        }
-
-    });
-
-
-
