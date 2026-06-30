@@ -192,7 +192,7 @@ MAGAZINE HERO START
 
                     <div class="hero-buttons">
 
-                        <a href="#latest-issue" class="btn-gold">
+                        <a href="#issues" class="btn-gold">
 
                             Read Latest Issue
 
@@ -231,151 +231,242 @@ MAGAZINE HERO END
 ========================== -->
 
 
-    <!-- =========================
-LATEST ISSUE START
-========================= -->
 
-    <section id="latest-issue" class="latest-issue">
+    <!-- LATEST ISSUES START -->
+
+    <section class="issues-section py-5" id="issues">
 
         <div class="container">
 
-            <div class="section-header text-center">
+            <div class="text-center mb-5">
 
                 <span class="section-subtitle">
-                    LATEST ISSUE
+                    STAR FAIR MAGAZINE
                 </span>
 
-                <h2>
-                    STAR FAIR Magazine
+                <h2 class="section-title mt-2">
+                    Latest ISSUES
                 </h2>
 
-                <p>
+                <p class="section-desc">
+                    Browse all editions of STAR FAIR Magazine featuring fashion,
+                    beauty, culture and exclusive event highlights.
+                </p>
 
-                    Read the latest digital edition with an interactive
-                    page-flipping experience.
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Issue 01 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="issue-card">
+
+                        <div class="issue-image">
+
+                            <img src="assets/images/magazine/page1.jpg" alt="Issue 01">
+
+                            <span class="issue-badge">
+                                Latest
+                            </span>
+
+                        </div>
+
+                        <div class="issue-content">
+
+                            <small>
+                                January 2026
+                            </small>
+
+                            <h4>
+                                Fashion Edition
+                            </h4>
+
+                            <p>
+                                Fashion trends, beauty insights,
+                                exclusive interviews and event coverage.
+                            </p>
+
+                            <a href="#viewer" class="issue-btn" data-issue="0">
+                                Read Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Issue 02 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="issue-card">
+
+                        <div class="issue-image">
+
+                            <img src="assets/images/magazine/page2.jpg" alt="Issue 02">
+
+                        </div>
+
+                        <div class="issue-content">
+
+                            <small>
+                                October 2025
+                            </small>
+
+                            <h4>
+                                Beauty Edition
+                            </h4>
+
+                            <p>
+                                Makeup, grooming,
+                                pageantry and lifestyle inspiration.
+                            </p>
+
+                            <a href="#viewer" class="issue-btn" data-issue="1">
+                                Read Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Issue 03 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="issue-card">
+
+                        <div class="issue-image">
+
+                            <img src="assets/images/magazine/page3.jpg" alt="Issue 03">
+
+                        </div>
+
+                        <div class="issue-content">
+
+                            <small>
+                                June 2025
+                            </small>
+
+                            <h4>
+                                Cultural Edition
+                            </h4>
+
+                            <p>
+                                Cultural heritage,
+                                dance, art and community stories.
+                            </p>
+
+                            <a href="#viewer" class="issue-btn" data-issue="2">
+                                Read Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Issue 04 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="issue-card">
+
+                        <div class="issue-image">
+
+                            <img src="assets/images/magazine/page4.jpg" alt="Issue 04">
+
+                        </div>
+
+                        <div class="issue-content">
+
+                            <small>
+                                February 2025
+                            </small>
+
+                            <h4>
+                                Lifestyle Edition
+                            </h4>
+
+                            <p>
+                                Modern lifestyle,
+                                fashion inspiration and exclusive features.
+                            </p>
+
+                            <a href="#viewer" class="issue-btn" data-issue="3">
+                                Read Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Others ISSUES END -->
+
+
+    <!-- MAGAZINE VIEWER START -->
+
+    <section class="viewer-section py-5" id="viewer">
+
+        <div class="container">
+
+            <div class="viewer-header text-center mb-5">
+
+                <span class="section-subtitle">
+                    DIGITAL EDITION
+                </span>
+
+                <h2 id="viewerTitle">
+
+                    STAR FAIR MAGAZINE
+
+                </h2>
+
+                <p id="viewerDescription">
+
+                    Click any magazine cover above to start reading.
 
                 </p>
 
             </div>
 
-            <div class="row align-items-center g-5">
+            <div class="row justify-content-center">
 
-                <!-- FlipBook -->
+                <div class="col-xl-10">
 
-                <div class="col-lg-8">
+                    <div class="viewer-box">
 
-                    <div class="mag-toolbar">
-
-                        <button id="prevBtn">
-
-                            <i class="fa-solid fa-chevron-left"></i>
-
-                        </button>
-
-                        <div class="page-status">
-
-                            <span id="pageIndicator">
-
-                                1 - 2
-
-                            </span>
-
-                            <small id="totalPages">
-
-                                / 0
-
-                            </small>
-
-                        </div>
-
-                        <button id="nextBtn">
-
-                            <i class="fa-solid fa-chevron-right"></i>
-
-                        </button>
-
-                    </div>
-
-                    <div class="flipbook-wrapper">
-
-                        <div id="pdf-book"></div>
-
-                    </div>
-                    <audio id="flipSound">
-
-                        <source src="assets/sounds/page-flip.mp3">
-
-                    </audio>
-
-                </div>
-
-                <!-- Right Panel -->
-
-                <div class="col-lg-4">
-
-                    <div class="issue-card">
-
-                        <img src="assets/images/magazine/page1.jpg" alt="Magazine Cover">
-
-                        <h3>
-
-                            Volume 02
-
-                        </h3>
-
-                        <p>
-
-                            June 2026 Edition
-
-                        </p>
-
-                        <ul>
-
-                            <li>
-                                72 Pages
-                            </li>
-
-                            <li>
-                                Fashion Editorial
-                            </li>
-
-                            <li>
-                                Lifestyle
-                            </li>
-
-                            <li>
-                                Beauty
-                            </li>
-
-                            <li>
-                                Cultural Events
-                            </li>
-
-                        </ul>
-
-
-
-                        <a href="assets/pdf/flipbook.pdf" download class="download-btn">
-
-                            Download PDF
-
-                        </a>
+                        <div id="flipbook"></div>
 
                     </div>
 
                 </div>
 
             </div>
-            
 
-          
         </div>
 
     </section>
 
-    <!-- =========================
-LATEST ISSUE END
-========================= -->
+    <audio id="flipSound" preload="auto">
+        <source src="assets/sounds/page-flip.mp3">
+    </audio>
+
+    <!-- MAGAZINE VIEWER END -->
 
 
     <!-- Bootstrap -->
@@ -404,7 +495,9 @@ LATEST ISSUE END
     </script>
 
     <script src="assets/js/magazine.js"></script>
-     
+
+
+
 
 </body>
 
