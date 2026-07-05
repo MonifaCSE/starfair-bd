@@ -215,7 +215,15 @@ position:relative;
 
  .section-title p {
 
-     color: #ccc;
+      
+    font-size: 18px;
+     color: #d0d0d0;
+
+     line-height: 1.9;
+
+     margin-bottom: 20px;
+
+
  }
 
  .program-card {
