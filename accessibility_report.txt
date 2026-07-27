@@ -1,0 +1,659 @@
+--- STATIC ACCESSIBILITY AUDIT REPORT ---
+
+==================================================
+PAGE: 404.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 1
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2]
+  - Heading hierarchy is correct.
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: acting.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: advisor-trainers.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 5
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: award.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 18
+  - All images have alt attributes.
+  - [NOTE] 12 images have empty alt attributes (alt=""):
+    * <img src="assets/images/award/10.jpeg" alt="">
+    * <img src="assets/images/award/1.jpeg" alt="">
+    * <img src="assets/images/award/2.jpeg" alt="">
+    * <img src="assets/images/award/18.jpeg" alt="">
+    * <img src="assets/images/award/6.jpeg" alt="">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2, 3, 3, 3, 3, 2, 3, 2, 2, 4, 4, 4, 4, 4, 4, 2, 2, 4, 4, 4, 4, 2, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: campaign-shoot.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 14
+  - [WARNING] 13 images missing alt attribute:
+    * <img src="assets/images/campaign/about.jpg"
+                    class="img-fluid rounded">
+    * <img src="assets/images/campaign/style1.jpg">
+    * <img src="assets/images/campaign/style2.jpg">
+    * <img src="assets/images/campaign/style3.jpg">
+    * <img src="assets/images/campaign/bts.jpg"
+                    class="img-fluid rounded">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2, 4, 4, 4, 4, 2, 4, 4, 4, 2, 2, 4, 4, 4, 4, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+    * Jumped from H2 to H4
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: classical-dance.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: communication.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: contact.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 1
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 5, 2, 4, 4, 4, 4, 5, 2, 3, 3, 3, 2, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H5
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: course.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 18
+  - All images have alt attributes.
+  - [NOTE] 3 images have empty alt attributes (alt=""):
+    * <img src="assets/images/programs/closeup.jpg" alt="">
+    * <img src="assets/images/programs/formal.jpg" alt="">
+    * <img src="assets/images/programs/bridal.jpg" alt="">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [2, 5, 2, 3, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 5, 2, 3, 3, 3, 3, 3, 3, 5, 2, 4, 4, 4, 5, 2, 4, 4, 4, 4, 5, 2, 2, 2, 2, 2, 2, 4, 4]
+  - [WARNING] Missing H1 heading on page.
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H5
+    * Jumped from H3 to H5
+    * Jumped from H2 to H4
+    * Jumped from H2 to H4
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: fashion-show.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 9
+  - [WARNING] 8 images missing alt attribute:
+    * <img src="assets/images/fashion-show/about.jpg" class="img-fluid rounded">
+    * <img src="assets/images/fashion-show/highlight1.jpg">
+    * <img src="assets/images/fashion-show/highlight3.jpg">
+    * <img src="assets/images/fashion-show/highlight2.jpg">
+    * <img src="assets/images/fashion-show/gallery1.jpg" class="gallery-img">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: fine-arts.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: grooming.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: hiphop-dance.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: hosting.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: index.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 33
+  - [WARNING] 10 images missing alt attribute:
+    * <img src="assets/images/programs/fasion.jpg" loading="lazy">
+    * <img src="assets/images/programs/grooming.jpg" loading="lazy">
+    * <img src="assets/images/programs/acting.jpg" loading="lazy">
+    * <img src="assets/images/programs/culture.jpg" loading="lazy">
+    * <img src="assets/images/portfolio/model1.jpg" loading="lazy">
+  - [NOTE] 11 images have empty alt attributes (alt=""):
+    * <img src="assets/images/magazine/page1.jpg" alt="">
+    * <img src="assets/images/magazine/page2.jpg" alt="">
+    * <img src="assets/images/magazine/page3.jpg" alt="">
+    * <img src="assets/images/magazine/page4.jpg" alt="">
+    * <img src="assets/images/magazine/page5.webp" alt="">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 3, 2, 2, 3, 3, 3, 2, 2, 5, 3, 3, 3, 2, 4, 4]
+  - [WARNING] Found multiple (3) H1 headings.
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H5
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: kids-modelling.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 9
+  - [WARNING] 8 images missing alt attribute:
+    * <img src="assets/images/kids/kids-hero.webp" class="img-fluid rounded">
+    * <img src="assets/images/kids/highlight1.jpg">
+    * <img src="assets/images/kids/highlight2.jpg">
+    * <img src="assets/images/kids/highlight3.jpg">
+    * <img src="assets/images/kids/gallery1.jpg" class="gallery-img">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 4, 4, 4, 4, 2, 4, 4, 4, 2, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: kids-portfolio.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 9
+  - [WARNING] 8 images missing alt attribute:
+    * <img src="assets/images/kid/kid1.jpg" class="gallery-img">
+    * <img src="assets/images/kid/kid2.jpg" class="gallery-img">
+    * <img src="assets/images/kid/kid3.jpg" class="gallery-img">
+    * <img src="assets/images/kid/kid4.jpg" class="gallery-img">
+    * <img src="assets/images/kid/kid5.jpg" class="gallery-img">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2]
+  - Heading hierarchy is correct.
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: magazine.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 4, 4, 4, 4, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: makeup.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: modeling.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: models-portfolio.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 11
+  - [WARNING] 10 images missing alt attribute:
+    * <img src="assets/images/models/about.jpg"
+                     class="img-fluid rounded">
+    * <img src="assets/images/models/body-model.jpg"
+                    class="img-fluid rounded">
+    * <img src="assets/images/models/gallery1.jpg" class="gallery-img">
+    * <img src="assets/images/models/gallery2.jpg" class="gallery-img">
+    * <img src="assets/images/models/gallery3.jpg" class="gallery-img">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 3, 3, 3, 2, 2]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: pageant.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: photo-gallery.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 22
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: photography.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: poetry.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 6
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 3, 3, 4, 3, 3, 2, 2, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H1 to H3
+    * Jumped from H2 to H4
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: privacy.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 1
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: []
+  - [WARNING] Missing H1 heading on page.
+  - Heading hierarchy is correct.
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+PAGE: registration.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 2
+  - All images have alt attributes.
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 5, 4, 4, 4]
+  - [WARNING] Heading hierarchy gaps found:
+    * Jumped from H2 to H5
+
+[3] BUTTONS & LINKS LABELS:
+  - [WARNING] Found 1 empty <button> elements.
+  - [WARNING] Found 3 icon-only links lacking screen reader text or aria-label:
+    * <i class="fab fa-facebook-f"></i>
+    * <i class="fab fa-instagram"></i>
+    * <i class="fab fa-youtube"></i>
+
+
+==================================================
+PAGE: teenager-portfolio.html
+==================================================
+
+[1] IMAGE ALT ATTRIBUTES:
+  - Total Images: 9
+  - [WARNING] 8 images missing alt attribute:
+    * <img src="assets/images/teen/gallery1.jpg" class="gallery-img">
+    * <img src="assets/images/teen/gallery2.jpg" class="gallery-img">
+    * <img src="assets/images/teen/gallery3.jpg" class="gallery-img">
+    * <img src="assets/images/teen/gallery4.jpg" class="gallery-img">
+    * <img src="assets/images/teen/gallery5.jpg" class="gallery-img">
+
+[2] HEADING STRUCTURE:
+  - Heading tags order: [1, 2, 2]
+  - Heading hierarchy is correct.
+
+[3] BUTTONS & LINKS LABELS:
+  - No empty buttons found.
+  - No icon-only links without content found.
+
+
+==================================================
+CSS FOCUS STATES & OUTLINES:
+==================================================
+
+FILE: assets/css/event.css
+  - Found 0 instances disabling outline ('outline: none' or 'outline: 0').
+  - Found 0 custom focus selector overrides (:focus).
+
+FILE: assets/css/gallery.css
+  - Found 0 instances disabling outline ('outline: none' or 'outline: 0').
+  - Found 0 custom focus selector overrides (:focus).
+
+FILE: assets/css/magazine.css
+  - Found 0 instances disabling outline ('outline: none' or 'outline: 0').
+  - Found 0 custom focus selector overrides (:focus).
+
+FILE: assets/css/style1.css
+  - Found 0 instances disabling outline ('outline: none' or 'outline: 0').
+  - Found 0 custom focus selector overrides (:focus).
+
+FILE: assets/css/style2.css
+  - Found 0 instances disabling outline ('outline: none' or 'outline: 0').
+  - Found 2 custom focus selector overrides (:focus).
+
+
+--- END OF REPORT ---

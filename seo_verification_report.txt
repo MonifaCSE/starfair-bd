@@ -1,0 +1,280 @@
+--- SEO METADATA VERIFICATION REPORT ---
+
+==================================================
+1. TITLE UNIQUENESS & DUPLICATES CHECK
+==================================================
+  - [WARNING] Duplicate Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh' found on 28 pages:
+    * 404.html
+    * acting.html
+    * advisor-trainers.html
+    * award.html
+    * campaign-shoot.html
+    * classical-dance.html
+    * communication.html
+    * contact.html
+    * course.html
+    * fashion-show.html
+    * fine-arts.html
+    * grooming.html
+    * hiphop-dance.html
+    * hosting.html
+    * index.html
+    * kids-modelling.html
+    * kids-portfolio.html
+    * magazine.html
+    * makeup.html
+    * modeling.html
+    * models-portfolio.html
+    * pageant.html
+    * photo-gallery.html
+    * photography.html
+    * poetry.html
+    * privacy.html
+    * registration.html
+    * teenager-portfolio.html
+
+==================================================
+2. META DESCRIPTION UNIQUENESS & DUPLICATES CHECK
+==================================================
+  - [WARNING] Duplicate Meta Description on 28 pages:
+    Text: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+    * 404.html
+    * acting.html
+    * advisor-trainers.html
+    * award.html
+    * campaign-shoot.html
+    * classical-dance.html
+    * communication.html
+    * contact.html
+    * course.html
+    * fashion-show.html
+    * fine-arts.html
+    * grooming.html
+    * hiphop-dance.html
+    * hosting.html
+    * index.html
+    * kids-modelling.html
+    * kids-portfolio.html
+    * magazine.html
+    * makeup.html
+    * modeling.html
+    * models-portfolio.html
+    * pageant.html
+    * photo-gallery.html
+    * photography.html
+    * poetry.html
+    * privacy.html
+    * registration.html
+    * teenager-portfolio.html
+
+==================================================
+3. H1 TAG COUNTS ANALYSIS
+==================================================
+  - [WARNING] Page: 'course.html' has 0 <h1> elements (Should be exactly 1!)
+  - [WARNING] Page: 'index.html' has 3 <h1> elements (Should be exactly 1!)
+  - [WARNING] Page: 'privacy.html' has 0 <h1> elements (Should be exactly 1!)
+
+==================================================
+4. SOCIAL CARD LOGS (OG & TWITTER IMAGES)
+==================================================
+  - [SUCCESS] Every page has valid og:image and twitter:image tags!
+
+==================================================
+5. COMPREHENSIVE BREAKDOWN BY PAGE
+==================================================
+
+PAGE: 404.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: acting.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: advisor-trainers.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: award.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: campaign-shoot.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: classical-dance.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: communication.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: contact.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: course.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 0
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: fashion-show.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: fine-arts.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: grooming.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: hiphop-dance.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: hosting.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: index.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 3
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: kids-modelling.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: kids-portfolio.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: magazine.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: makeup.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: modeling.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: models-portfolio.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: pageant.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: photo-gallery.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: photography.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: poetry.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: privacy.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 0
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: registration.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+
+PAGE: teenager-portfolio.html
+  - Title: 'STAR FAIR | Fashion & Cultural Training Institute Bangladesh'
+  - Meta Description: 'STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.'
+  - <h1> Count: 1
+  - OG Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'
+  - Twitter Image: 'https://starfairbd.com/assets/images/logo/logo.jpg'

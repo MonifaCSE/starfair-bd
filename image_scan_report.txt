@@ -1,0 +1,517 @@
+--- SCANNED IMAGE REPORT ---
+Total Unique Images on Disk: 224
+Total Unique Image References in Code: 111
+
+--- MISSING IMAGES (Referenced in HTML but missing from disk) ---
+  - None
+
+--- DUPLICATE IMAGES (Identical file contents, different paths) ---
+  - Hash: 6722f521aecddb1285655ff4030dd038
+    * assets/images/magazine.jpg
+    * assets/images/magazine/page1.jpg
+    * assets/images/magazine/issue/issue1/page1.jpg
+    * assets/pdf/magazine/page1.jpg
+  - Hash: e100ec2fbab0cebfba3c72ce760d86e4
+    * assets/images/about/about.jpg
+    * assets/images/campaign/style2.jpg
+  - Hash: 279f7ad98a30ef6ec6b6803a20436333
+    * assets/images/award/12 (1).jpeg
+    * assets/images/award/12.jpeg
+  - Hash: 1474fa7d0f52c7c17516ef7a5f722f48
+    * assets/images/award/award1.jpeg
+    * assets/images/award/award2 (1).jpeg
+    * assets/images/award/award2.jpeg
+  - Hash: 0f762f9c24f4677423669c9d3c3f581a
+    * assets/images/campaign/campaign-hero.jpg
+    * assets/images/hero/campaign-shoot.jpg
+  - Hash: ee6fd85611d1c6af4d616c38a5ab8e0c
+    * assets/images/campaign/gallery5.jpg
+    * assets/images/programs/culture.jpg
+  - Hash: e3354a57e522e7f02d9c130bed4b75df
+    * assets/images/campaign/unnamed(16).jpg
+    * assets/images/programs/photo.jpg
+  - Hash: 6c56ad1abcdddef5a9651e0cfae38610
+    * assets/images/campaign/unnamed(18).jpg
+    * assets/images/programs/acting.jpg
+  - Hash: 26f2eaea98ae9ea4bad89bc9ad9e3638
+    * assets/images/campaign/unnamed(20).jpg
+    * assets/images/programs/closeup.jpg
+  - Hash: 4deeebc2a00249a693d460296b0f3d0e
+    * assets/images/campaign/unnamed(7).jpg
+    * assets/images/programs/formal.jpg
+  - Hash: 475028eb737d0e580c0f1e8f66c53064
+    * assets/images/campaign/unnamed.jpg
+    * assets/images/fashion-show/unnamed.jpg
+    * assets/images/kid/unnamed.jpg
+    * assets/images/logo/logo.jpg
+  - Hash: 80b0fd1189f41face4ec6d42b57049cc
+    * assets/images/fashion-show/about.jpg
+    * assets/images/programs/fasion.jpg
+  - Hash: 20823e605e35ac7f00dcb1ea80fd8302
+    * assets/images/fashion-show/unnamed(12).jpg
+    * assets/images/programs/art.jpg
+  - Hash: db07112c3292a8429cca83e1e5b89ad2
+    * assets/images/hero/courses1.jpg
+    * assets/images/programs/grooming.jpg
+  - Hash: 3d44b17217f7e318017dec6e9fd20642
+    * assets/images/kid/kid1.jpg
+    * assets/images/kids/gallery4.jpg
+    * assets/images/portfolio/kids1.jpg
+  - Hash: f4839bc6276e995720e2c77f6d71f8a9
+    * assets/images/kid/kid2.jpg
+    * assets/images/kids/gallery1.jpg
+  - Hash: f8105e5ba870f0ae8dc401b3151a1f0b
+    * assets/images/kid/kid3.jpg
+    * assets/images/kids/gallery2.jpg
+  - Hash: d226b14f6351f6e186f245aff54d0816
+    * assets/images/kid/kid5.jpg
+    * assets/images/kids/highlight1.jpg
+    * assets/images/portfolio/teenage2.jpg
+  - Hash: 90a59b0a5e5efd7b0f53e625a91c03e7
+    * assets/images/kid/kid6.jpg
+    * assets/images/kids/gallery3.jpg
+  - Hash: ed1ecf55b57c7a3297c76872ca8e581f
+    * assets/images/kid/kid8.jpg
+    * assets/images/portfolio/kids2.jpg
+  - Hash: fd67c0119dc9601409655c2c07d3cf10
+    * assets/images/kid/unnamed(10).jpg
+    * assets/images/kids/e.jpg
+    * assets/images/teen/teen-hero.jpg
+  - Hash: f0e4cc0ebabd5cdc53f22d3b3f79c45a
+    * assets/images/kid/unnamed(11).jpg
+    * assets/images/portfolio/teenage1.jpg
+    * assets/images/teen/unnamed(11).jpg
+  - Hash: 1a2cd60d2b8d593fe2d568366c980f2d
+    * assets/images/kid/unnamed(15).jpg
+    * assets/images/kids/highlight3.jpg
+  - Hash: 1906f4932205473b5285a001244a9479
+    * assets/images/kid/unnamed(16).jpg
+    * assets/images/programs/communication.jpg
+  - Hash: ed50602f2a6bed06521f64a371b72985
+    * assets/images/kid/unnamed(18).jpg
+    * assets/images/kids/highlight2.jpg
+  - Hash: ebfa3b94d968f905309c9ebbecbc1558
+    * assets/images/kid/unnamed(5).jpg
+    * assets/images/teen/gallery8.jpg
+  - Hash: 91121b1547382d1b6be87f22871be12a
+    * assets/images/kid/unnamed(9).jpg
+    * assets/images/kids/kids-hero1.jpg
+  - Hash: 79cc97d2cf80f6186a2b022151bc8c26
+    * assets/images/magazine/page10.jpg
+    * assets/pdf/magazine/page10.jpg
+  - Hash: 073081e26bd9de39d025c3c33574d568
+    * assets/images/magazine/page11.jpg
+    * assets/pdf/magazine/page11.jpg
+  - Hash: c540a01f5ccec927a594e758e1a59530
+    * assets/images/magazine/page12.jpg
+    * assets/pdf/magazine/page12.jpg
+  - Hash: 51846b143fe1c4bf3c143d7aa4fa4aa0
+    * assets/images/magazine/page2.jpg
+    * assets/images/magazine/issue/issue2/page1.jpg
+    * assets/pdf/magazine/page2.jpg
+  - Hash: 9a3fbaba43813ace75e7134cc457c10f
+    * assets/images/magazine/page3.jpg
+    * assets/images/magazine/issue/issue3/page1.jpg
+    * assets/pdf/magazine/page3.jpg
+  - Hash: 0d7e5acf35d65a0adc07b7f45d7d7e22
+    * assets/images/magazine/page4.jpg
+    * assets/images/magazine/issue/issue4/page1.jpg
+    * assets/pdf/magazine/page4.jpg
+  - Hash: bfa4033a1514507205df286755d61e3e
+    * assets/images/magazine/page5.webp
+    * assets/pdf/magazine/page5.webp
+  - Hash: 3e0df18e57e079541eb3472fe1bd4ea5
+    * assets/images/magazine/page6.jpg
+    * assets/pdf/magazine/page6.jpg
+  - Hash: eded50c3e9cac8b4f2516e5c014eb17b
+    * assets/images/magazine/page7.jpg
+    * assets/pdf/magazine/page7.jpg
+  - Hash: c48084acf05e70445fe0662f0084634e
+    * assets/images/magazine/page8.jpg
+    * assets/pdf/magazine/page8.jpg
+  - Hash: fc4a3ea2b91a0e3f5ba2616bc5d6c75d
+    * assets/images/magazine/page9.jpg
+    * assets/pdf/magazine/page9.jpg
+  - Hash: 3ac3c7f2b0c4eda68090c5889f7aef6a
+    * assets/images/magazine/issue/2.jpg
+    * assets/images/magazine/news-articles/2.jpg
+  - Hash: 8f07505137368697cb557dd4ba2c7c3a
+    * assets/images/magazine/issue/3.jpeg
+    * assets/images/magazine/news-articles/3.jpeg
+  - Hash: 96924c64af40f7bb0e524ebda0196a43
+    * assets/images/magazine/issue/4.jpeg
+    * assets/images/magazine/news-articles/4.jpeg
+  - Hash: d6ea48823b411a447b787fd6142836e7
+    * assets/images/magazine/issue/488871533_1269326631449284_5145335292797961810_n.jpg
+    * assets/images/magazine/news-articles/488871533_1269326631449284_5145335292797961810_n.jpg
+  - Hash: d33cf07f16ac555f6051b87df51249ae
+    * assets/images/magazine/issue/5.jpg
+    * assets/images/magazine/news-articles/5.jpg
+  - Hash: 91a668c5b24d5ad18d3493747bdf21c8
+    * assets/images/magazine/issue/issue2/page2.jpg
+    * assets/images/models/gallery8.jpg
+  - Hash: 598aa1e7e2803b7be8aa90e153df58fa
+    * assets/images/magazine/issue/issue2/page4.jpg
+    * assets/images/models/gallery7.jpg
+  - Hash: 655eb150604b3e28fedaa6d194f522eb
+    * assets/images/magazine/issue/issue2/page6.jpg
+    * assets/images/models/gallery1.jpg
+
+--- UNUSED IMAGES (On disk but never referenced in code) ---
+  - assets/images/contact-hero.jpg
+  - assets/images/magazine.jpg
+  - assets/images/torsa.png
+  - assets/images/unnamed(1).jpg
+  - assets/images/about/about.webp
+  - assets/images/award/12 (1).jpeg
+  - assets/images/award/12.jpeg
+  - assets/images/award/13.jpeg
+  - assets/images/award/14.jpeg
+  - assets/images/award/15.jpeg
+  - assets/images/award/16.jpeg
+  - assets/images/award/17.jpeg
+  - assets/images/award/19.jpeg
+  - assets/images/award/7.jpeg
+  - assets/images/award/admin-panel.jpeg
+  - assets/images/award/award1.jpeg
+  - assets/images/award/award2 (1).jpeg
+  - assets/images/award/panel3.jpeg
+  - assets/images/campaign/campaign-hero.jpg
+  - assets/images/campaign/unnamed(12).jpg
+  - assets/images/campaign/unnamed(14).jpg
+  - assets/images/campaign/unnamed(16).jpg
+  - assets/images/campaign/unnamed(17).jpg
+  - assets/images/campaign/unnamed(18).jpg
+  - assets/images/campaign/unnamed(20).jpg
+  - assets/images/campaign/unnamed(21).jpg
+  - assets/images/campaign/unnamed(23).jpg
+  - assets/images/campaign/unnamed(27).jpg
+  - assets/images/campaign/unnamed(5).jpg
+  - assets/images/campaign/unnamed(6).jpg
+  - assets/images/campaign/unnamed(7).jpg
+  - assets/images/campaign/unnamed(9).jpg
+  - assets/images/campaign/unnamed.jpg
+  - assets/images/fashion-show/fashion-hero.jpg
+  - assets/images/fashion-show/unnamed(10).jpg
+  - assets/images/fashion-show/unnamed(12).jpg
+  - assets/images/fashion-show/unnamed(13).jpg
+  - assets/images/fashion-show/unnamed(15).jpg
+  - assets/images/fashion-show/unnamed(3).jpg
+  - assets/images/fashion-show/unnamed(7).jpg
+  - assets/images/fashion-show/unnamed(8).jpg
+  - assets/images/fashion-show/unnamed.jpg
+  - assets/images/hero/courses.jpg
+  - assets/images/hero/courses1.jpg
+  - assets/images/kid/unnamed(10).jpg
+  - assets/images/kid/unnamed(11).jpg
+  - assets/images/kid/unnamed(12).jpg
+  - assets/images/kid/unnamed(13).jpg
+  - assets/images/kid/unnamed(14).jpg
+  - assets/images/kid/unnamed(15).jpg
+  - assets/images/kid/unnamed(16).jpg
+  - assets/images/kid/unnamed(18).jpg
+  - assets/images/kid/unnamed(5).jpg
+  - assets/images/kid/unnamed(9).jpg
+  - assets/images/kid/unnamed.jpg
+  - assets/images/kids/e.jpg
+  - assets/images/kids/kids-hero1.jpg
+  - assets/images/magazine/hero.jpg
+  - assets/images/magazine/page12.jpg
+  - assets/images/magazine/page3.png
+  - assets/images/magazine/page3.webp
+  - assets/images/magazine/issue/2.jpg
+  - assets/images/magazine/issue/3.jpeg
+  - assets/images/magazine/issue/4.jpeg
+  - assets/images/magazine/issue/488871533_1269326631449284_5145335292797961810_n.jpg
+  - assets/images/magazine/issue/5.jpg
+  - assets/images/magazine/issue/issue1/page1.jpg
+  - assets/images/magazine/issue/issue1/page2.jpg
+  - assets/images/magazine/issue/issue1/page3.jpg
+  - assets/images/magazine/issue/issue1/page4.jpg
+  - assets/images/magazine/issue/issue1/page5.jpg
+  - assets/images/magazine/issue/issue1/page6.jpg
+  - assets/images/magazine/issue/issue2/page1.jpg
+  - assets/images/magazine/issue/issue2/page2.jpg
+  - assets/images/magazine/issue/issue2/page3.jpg
+  - assets/images/magazine/issue/issue2/page4.jpg
+  - assets/images/magazine/issue/issue2/page5.jpg
+  - assets/images/magazine/issue/issue2/page6.jpg
+  - assets/images/magazine/issue/issue3/page1.jpg
+  - assets/images/magazine/issue/issue3/page2.jpg
+  - assets/images/magazine/issue/issue3/page3.jpg
+  - assets/images/magazine/issue/issue3/page4.jpg
+  - assets/images/magazine/issue/issue3/page5.jpg
+  - assets/images/magazine/issue/issue3/page6.jpg
+  - assets/images/magazine/issue/issue4/page1.jpg
+  - assets/images/magazine/issue/issue4/page2.jpg
+  - assets/images/magazine/issue/issue4/page3.jpg
+  - assets/images/magazine/issue/issue4/page4.jpg
+  - assets/images/magazine/issue/issue4/page5.jpg
+  - assets/images/magazine/issue/issue4/page6.jpg
+  - assets/images/magazine/news-articles/2.jpg
+  - assets/images/magazine/news-articles/3.jpeg
+  - assets/images/magazine/news-articles/4.jpeg
+  - assets/images/magazine/news-articles/488871533_1269326631449284_5145335292797961810_n.jpg
+  - assets/images/magazine/news-articles/5.jpg
+  - assets/images/models/ gallery2.jpg
+  - assets/images/models/a2.jpg
+  - assets/images/models/hero.jpg
+  - assets/images/teen/teen-hero.jpg
+  - assets/images/teen/teen-hero2.jpg
+  - assets/images/teen/unnamed(11).jpg
+  - assets/pdf/magazine/page1.jpg
+  - assets/pdf/magazine/page10.jpg
+  - assets/pdf/magazine/page11.jpg
+  - assets/pdf/magazine/page12.jpg
+  - assets/pdf/magazine/page2.jpg
+  - assets/pdf/magazine/page3.jpg
+  - assets/pdf/magazine/page4.jpg
+  - assets/pdf/magazine/page5.webp
+  - assets/pdf/magazine/page6.jpg
+  - assets/pdf/magazine/page7.jpg
+  - assets/pdf/magazine/page8.jpg
+  - assets/pdf/magazine/page9.jpg
+
+--- OVERSIZED IMAGES (>500KB) ---
+  - assets/images/torsa.png (1.06 MB)
+  - assets/images/award/10.jpeg (0.50 MB)
+  - assets/images/award/11.jpeg (0.56 MB)
+  - assets/images/award/13.jpeg (0.50 MB)
+  - assets/images/award/15.jpeg (0.49 MB)
+  - assets/images/award/16.jpeg (0.53 MB)
+  - assets/images/award/18.jpeg (0.53 MB)
+  - assets/images/award/2.jpeg (0.59 MB)
+  - assets/images/award/6.jpeg (0.54 MB)
+  - assets/images/award/7.jpeg (0.53 MB)
+  - assets/images/award/8.jpeg (0.57 MB)
+  - assets/images/magazine/page3.jpg (0.51 MB)
+  - assets/images/magazine/page3.png (4.17 MB)
+  - assets/images/magazine/page4.jpg (0.57 MB)
+  - assets/images/magazine/page9.jpg (0.51 MB)
+  - assets/images/magazine/issue/issue3/page1.jpg (0.51 MB)
+  - assets/images/magazine/issue/issue4/page1.jpg (0.57 MB)
+  - assets/pdf/magazine/page3.jpg (0.51 MB)
+  - assets/pdf/magazine/page4.jpg (0.57 MB)
+  - assets/pdf/magazine/page9.jpg (0.51 MB)
+
+--- IMAGES THAT SHOULD BE CONVERTED TO WEBP (JPG/PNG) ---
+  - assets/images/magazine/page3.png (4268.4 KB)
+  - assets/images/torsa.png (1085.7 KB)
+  - assets/images/award/2.jpeg (599.9 KB)
+  - assets/images/award/8.jpeg (585.5 KB)
+  - assets/images/magazine/page4.jpg (578.8 KB)
+  - assets/images/magazine/issue/issue4/page1.jpg (578.8 KB)
+  - assets/pdf/magazine/page4.jpg (578.8 KB)
+  - assets/images/award/11.jpeg (573.1 KB)
+  - assets/images/award/6.jpeg (551.1 KB)
+  - assets/images/award/16.jpeg (547.2 KB)
+  - assets/images/award/7.jpeg (544.9 KB)
+  - assets/images/award/18.jpeg (539.9 KB)
+  - assets/images/magazine/page9.jpg (526.7 KB)
+  - assets/pdf/magazine/page9.jpg (526.7 KB)
+  - assets/images/magazine/page3.jpg (525.5 KB)
+  - assets/images/magazine/issue/issue3/page1.jpg (525.5 KB)
+  - assets/pdf/magazine/page3.jpg (525.5 KB)
+  - assets/images/award/10.jpeg (512.5 KB)
+  - assets/images/award/13.jpeg (507.8 KB)
+  - assets/images/award/15.jpeg (506.2 KB)
+  - assets/images/magazine/page8.jpg (481.2 KB)
+  - assets/pdf/magazine/page8.jpg (481.2 KB)
+  - assets/images/kid/unnamed(15).jpg (477.0 KB)
+  - assets/images/kids/highlight3.jpg (477.0 KB)
+  - assets/images/magazine/page7.jpg (476.7 KB)
+  - assets/pdf/magazine/page7.jpg (476.7 KB)
+  - assets/images/campaign/style1.jpg (471.5 KB)
+  - assets/images/award/award1.jpeg (464.1 KB)
+  - assets/images/award/award2 (1).jpeg (464.1 KB)
+  - assets/images/award/award2.jpeg (464.1 KB)
+  - assets/images/award/admin-panel.jpeg (457.8 KB)
+  - assets/images/award/panel4.jpeg (446.7 KB)
+  - assets/images/award/1.jpeg (443.4 KB)
+  - assets/images/award/14.jpeg (439.1 KB)
+  - assets/images/award/17.jpeg (437.7 KB)
+  - assets/images/award/19.jpeg (435.6 KB)
+  - assets/images/award/9.jpeg (434.2 KB)
+  - assets/images/award/12 (1).jpeg (432.9 KB)
+  - assets/images/award/12.jpeg (432.9 KB)
+  - assets/images/award/4.jpeg (428.7 KB)
+  - assets/images/award/panel3.jpeg (423.8 KB)
+  - assets/images/award/3.jpeg (414.8 KB)
+  - assets/images/models/about.jpg (396.6 KB)
+  - assets/images/award/panel2.jpeg (372.5 KB)
+  - assets/images/event/event3.jpg (371.2 KB)
+  - assets/images/campaign/bts.jpg (369.1 KB)
+  - assets/images/campaign/gallery8.jpg (354.3 KB)
+  - assets/images/fashion-show/unnamed(13).jpg (351.7 KB)
+  - assets/images/award/sponser.jpeg (347.7 KB)
+  - assets/images/magazine/issue/issue1/page4.jpg (346.8 KB)
+  - assets/images/award/panel6.jpeg (345.4 KB)
+  - assets/images/magazine/issue/issue2/page2.jpg (343.2 KB)
+  - assets/images/models/gallery8.jpg (343.2 KB)
+  - assets/images/magazine/issue/issue2/page6.jpg (340.8 KB)
+  - assets/images/models/gallery1.jpg (340.8 KB)
+  - assets/images/campaign/unnamed(14).jpg (339.4 KB)
+  - assets/images/kid/kid5.jpg (339.4 KB)
+  - assets/images/kids/highlight1.jpg (339.4 KB)
+  - assets/images/portfolio/teenage2.jpg (339.4 KB)
+  - assets/images/award/sponser2.jpeg (334.9 KB)
+  - assets/images/campaign/gallery7.jpg (331.3 KB)
+  - assets/images/campaign/unnamed(18).jpg (330.4 KB)
+  - assets/images/programs/acting.jpg (330.4 KB)
+  - assets/images/magazine/issue/issue1/page6.jpg (324.2 KB)
+  - assets/images/fashion-show/unnamed(10).jpg (322.0 KB)
+  - assets/images/magazine/issue/issue3/page3.jpg (312.2 KB)
+  - assets/images/campaign/about.jpg (302.3 KB)
+  - assets/images/award/5.jpeg (301.1 KB)
+  - assets/images/award/fasion1.jpeg (297.8 KB)
+  - assets/images/teen/gallery5.jpg (290.0 KB)
+  - assets/images/event/event2.jpg (287.1 KB)
+  - assets/images/magazine/page10.jpg (286.8 KB)
+  - assets/pdf/magazine/page10.jpg (286.8 KB)
+  - assets/images/fashion-show/highlight3.jpg (286.5 KB)
+  - assets/images/fashion-show/unnamed(15).jpg (283.1 KB)
+  - assets/images/campaign/campaign-hero.jpg (279.9 KB)
+  - assets/images/hero/campaign-shoot.jpg (279.9 KB)
+  - assets/images/magazine/issue/issue3/page5.jpg (279.2 KB)
+  - assets/images/magazine/issue/issue3/page2.jpg (278.2 KB)
+  - assets/images/campaign/style3.jpg (276.5 KB)
+  - assets/images/kid/unnamed(12).jpg (275.8 KB)
+  - assets/images/teen/gallery7.jpg (271.6 KB)
+  - assets/images/magazine/issue/issue4/page3.jpg (269.9 KB)
+  - assets/images/magazine/issue/issue1/page3.jpg (265.3 KB)
+  - assets/images/models/gallery6.jpg (262.8 KB)
+  - assets/images/campaign/unnamed(6).jpg (260.9 KB)
+  - assets/images/fashion-show/highlight2.jpg (257.7 KB)
+  - assets/images/models/hero.jpg (255.5 KB)
+  - assets/images/kid/unnamed(18).jpg (252.5 KB)
+  - assets/images/kids/highlight2.jpg (252.5 KB)
+  - assets/images/magazine/issue/issue3/page6.jpg (251.7 KB)
+  - assets/images/campaign/unnamed(23).jpg (248.4 KB)
+  - assets/images/kid/kid1.jpg (248.0 KB)
+  - assets/images/kids/gallery4.jpg (248.0 KB)
+  - assets/images/portfolio/kids1.jpg (248.0 KB)
+  - assets/images/magazine/page12.jpg (244.5 KB)
+  - assets/pdf/magazine/page12.jpg (244.5 KB)
+  - assets/images/kid/kid7.jpg (240.2 KB)
+  - assets/images/teen/gallery6.jpg (240.0 KB)
+  - assets/images/magazine/issue/issue1/page2.jpg (239.0 KB)
+  - assets/images/teen/teen-hero2.jpg (239.0 KB)
+  - assets/images/magazine/issue/issue4/page6.jpg (234.2 KB)
+  - assets/images/teen/gallery1.jpg (232.0 KB)
+  - assets/images/fashion-show/highlight1.jpg (229.8 KB)
+  - assets/images/kid/unnamed(5).jpg (226.6 KB)
+  - assets/images/teen/gallery8.jpg (226.6 KB)
+  - assets/images/magazine/issue/issue1/page5.jpg (225.9 KB)
+  - assets/images/campaign/unnamed(27).jpg (222.1 KB)
+  - assets/images/campaign/unnamed(17).jpg (221.6 KB)
+  - assets/images/teen/gallery3.jpg (214.6 KB)
+  - assets/images/hero/courses.jpg (213.6 KB)
+  - assets/images/magazine/issue/issue4/page5.jpg (210.6 KB)
+  - assets/images/award/panel1.jpeg (209.2 KB)
+  - assets/images/teen/gallery4.jpg (208.9 KB)
+  - assets/images/kid/kid8.jpg (208.7 KB)
+  - assets/images/portfolio/kids2.jpg (208.7 KB)
+  - assets/images/fashion-show/gallery1.jpg (208.0 KB)
+  - assets/images/campaign/gallery3.jpg (206.1 KB)
+  - assets/images/magazine/issue/issue3/page4.jpg (204.7 KB)
+  - assets/images/fashion-show/unnamed(12).jpg (202.3 KB)
+  - assets/images/programs/art.jpg (202.3 KB)
+  - assets/images/fashion-show/unnamed(3).jpg (202.1 KB)
+  - assets/images/magazine/issue/488871533_1269326631449284_5145335292797961810_n.jpg (201.1 KB)
+  - assets/images/magazine/news-articles/488871533_1269326631449284_5145335292797961810_n.jpg (201.1 KB)
+  - assets/images/kid/unnamed(11).jpg (198.8 KB)
+  - assets/images/portfolio/teenage1.jpg (198.8 KB)
+  - assets/images/teen/unnamed(11).jpg (198.8 KB)
+  - assets/images/teen/gallery2.jpg (198.6 KB)
+  - assets/images/fashion-show/gallery3.jpg (197.6 KB)
+  - assets/images/models/body-model.jpg (194.4 KB)
+  - assets/images/campaign/unnamed(9).jpg (192.5 KB)
+  - assets/images/kid/unnamed(9).jpg (192.1 KB)
+  - assets/images/kids/kids-hero1.jpg (192.1 KB)
+  - assets/images/fashion-show/gallery2.jpg (191.4 KB)
+  - assets/images/about/about.jpg (186.6 KB)
+  - assets/images/campaign/style2.jpg (186.6 KB)
+  - assets/images/fashion-show/unnamed(7).jpg (186.1 KB)
+  - assets/images/magazine.jpg (185.1 KB)
+  - assets/images/magazine/page1.jpg (185.1 KB)
+  - assets/images/magazine/issue/issue1/page1.jpg (185.1 KB)
+  - assets/pdf/magazine/page1.jpg (185.1 KB)
+  - assets/images/campaign/gallery2.jpg (184.9 KB)
+  - assets/images/contact-hero.jpg (177.6 KB)
+  - assets/images/kid/unnamed(16).jpg (176.6 KB)
+  - assets/images/programs/communication.jpg (176.6 KB)
+  - assets/images/kid/unnamed(10).jpg (176.2 KB)
+  - assets/images/kids/e.jpg (176.2 KB)
+  - assets/images/teen/teen-hero.jpg (176.2 KB)
+  - assets/images/campaign/gallery4.jpg (174.3 KB)
+  - assets/images/fashion-show/fashion-hero.jpg (174.3 KB)
+  - assets/images/portfolio/model2.jpg (174.0 KB)
+  - assets/images/unnamed(1).jpg (170.5 KB)
+  - assets/images/magazine/issue/issue4/page4.jpg (169.8 KB)
+  - assets/images/kid/kid4.jpg (166.3 KB)
+  - assets/images/models/gallery5.jpg (165.5 KB)
+  - assets/images/magazine/issue/issue2/page3.jpg (165.2 KB)
+  - assets/images/campaign/unnamed(5).jpg (164.6 KB)
+  - assets/images/magazine/issue/issue2/page4.jpg (164.6 KB)
+  - assets/images/models/gallery7.jpg (164.6 KB)
+  - assets/images/magazine/page2.jpg (164.5 KB)
+  - assets/images/magazine/issue/issue2/page1.jpg (164.5 KB)
+  - assets/pdf/magazine/page2.jpg (164.5 KB)
+  - assets/images/models/a2.jpg (162.2 KB)
+  - assets/images/models/ gallery2.jpg (158.1 KB)
+  - assets/images/campaign/unnamed(7).jpg (157.5 KB)
+  - assets/images/programs/formal.jpg (157.5 KB)
+  - assets/images/campaign/unnamed(20).jpg (156.2 KB)
+  - assets/images/programs/closeup.jpg (156.2 KB)
+  - assets/images/kid/kid6.jpg (153.3 KB)
+  - assets/images/kids/gallery3.jpg (153.3 KB)
+  - assets/images/fashion-show/gallery4.jpg (153.0 KB)
+  - assets/images/portfolio/model1.jpg (150.3 KB)
+  - assets/images/campaign/unnamed(21).jpg (149.4 KB)
+  - assets/images/hero/courses1.jpg (149.0 KB)
+  - assets/images/programs/grooming.jpg (149.0 KB)
+  - assets/images/models/gallery3.jpg (148.0 KB)
+  - assets/images/hero/registration.jpg (147.8 KB)
+  - assets/images/magazine/issue/issue4/page2.jpg (146.7 KB)
+  - assets/images/magazine/issue/issue2/page5.jpg (136.0 KB)
+  - assets/images/campaign/unnamed(16).jpg (132.1 KB)
+  - assets/images/programs/photo.jpg (132.1 KB)
+  - assets/images/fashion-show/unnamed(8).jpg (131.0 KB)
+  - assets/images/models/gallery2.jpg (123.3 KB)
+  - assets/images/campaign/gallery5.jpg (118.7 KB)
+  - assets/images/programs/culture.jpg (118.7 KB)
+  - assets/images/magazine/hero.jpg (117.8 KB)
+  - assets/images/programs/bridal.jpg (113.9 KB)
+  - assets/images/magazine/issue/3.jpeg (112.8 KB)
+  - assets/images/magazine/news-articles/3.jpeg (112.8 KB)
+  - assets/images/hero/fasion-show.jpg (103.3 KB)
+  - assets/images/models/gallery4.jpg (101.7 KB)
+  - assets/images/magazine/issue/4.jpeg (101.5 KB)
+  - assets/images/magazine/news-articles/4.jpeg (101.5 KB)
+  - assets/images/kid/unnamed(14).jpg (100.7 KB)
+  - assets/images/campaign/gallery1.jpg (96.5 KB)
+  - assets/images/magazine/issue/2.jpg (93.9 KB)
+  - assets/images/magazine/news-articles/2.jpg (93.9 KB)
+  - assets/images/campaign/unnamed.jpg (86.2 KB)
+  - assets/images/fashion-show/unnamed.jpg (86.2 KB)
+  - assets/images/kid/unnamed.jpg (86.2 KB)
+  - assets/images/logo/logo.jpg (86.2 KB)
+  - assets/images/fashion-show/about.jpg (81.6 KB)
+  - assets/images/programs/fasion.jpg (81.6 KB)
+  - assets/images/event/event1.jpg (76.9 KB)
+  - assets/images/magazine/page6.jpg (73.2 KB)
+  - assets/pdf/magazine/page6.jpg (73.2 KB)
+  - assets/images/campaign/gallery6.jpg (59.0 KB)
+  - assets/images/campaign/unnamed(12).jpg (57.3 KB)
+  - assets/images/kid/kid3.jpg (53.4 KB)
+  - assets/images/kids/gallery2.jpg (53.4 KB)
+  - assets/images/kid/unnamed(13).jpg (52.9 KB)
+  - assets/images/magazine/issue/5.jpg (48.3 KB)
+  - assets/images/magazine/news-articles/5.jpg (48.3 KB)
+  - assets/images/kid/kid2.jpg (37.0 KB)
+  - assets/images/kids/gallery1.jpg (37.0 KB)
+  - assets/images/magazine/page11.jpg (36.7 KB)
+  - assets/pdf/magazine/page11.jpg (36.7 KB)
+  - assets/images/founder.jpg (36.5 KB)
+
+--- END OF REPORT ---
