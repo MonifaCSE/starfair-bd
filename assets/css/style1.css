@@ -1683,3 +1683,45 @@ body {
     min-height: 280px;
 
 }
+
+/* =========================
+   OFFICIAL COLLABORATION PARTNERS
+========================= */
+.partners-section {
+    background: #0a0a0a;
+    color: #ffffff;
+    padding: 80px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.partner-logo-item {
+    background: #111111;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    transition: all 0.3s ease;
+}
+.partner-logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+.partner-logo-item:hover {
+    border-color: #D4AF37;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+}
+.partner-logo-item:hover img {
+    transform: scale(1.05);
+}

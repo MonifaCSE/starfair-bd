@@ -355,19 +355,14 @@ Others ISSUES
 /* CARD */
 
 .issue-card{
-
     background:#171717;
-
     border-radius:20px;
-
     overflow:hidden;
-
     transition:.45s;
-
     border:1px solid rgba(212,175,55,.15);
-
     height:100%;
-
+    display:flex;
+    flex-direction:column;
 }
 
 .issue-card:hover{
@@ -457,9 +452,10 @@ Others ISSUES
 }
 
 .issue-content{
-
     padding:25px;
-
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
 }
 
 .issue-content small{
@@ -489,25 +485,16 @@ Others ISSUES
 /* BUTTON */
 
 .issue-btn{
-
     display:inline-block;
-
-    margin-top:18px;
-
+    margin-top:auto;
     padding:12px 26px;
-
     border-radius:40px;
-
     background:#d4af37;
-
     color:#000;
-
     font-weight:700;
-
     text-decoration:none;
-
     transition:.35s;
-
+    align-self:flex-start;
 }
 
 .issue-btn:hover{
