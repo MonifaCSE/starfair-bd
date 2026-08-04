@@ -138,13 +138,18 @@ function filterAndRenderRegistrations() {
     const filteredRegs = allRegistrations.filter(reg => {
         // Program filter (checks if program name is inside the registrations JSON string or row)
         // Wait, registrations API returns lists, we need to inspect the details if loaded, but the list row contains basic fields.
-        // Let's filter on the name/email/phone from the search bar
         const matchesSearch = 
             (reg.name || "").toLowerCase().includes(searchQuery) ||
             (reg.email || "").toLowerCase().includes(searchQuery) ||
             (reg.mobile || "").toLowerCase().includes(searchQuery);
 
-        return matchesSearch;
+        let matchesProgram = true;
+        if (programFilter) {
+            const lowerProgram = (reg.programmes || "").toLowerCase();
+            matchesProgram = lowerProgram.includes(programFilter.toLowerCase());
+        }
+
+        return matchesSearch && matchesProgram;
     });
 
     if (filteredRegs.length === 0) {

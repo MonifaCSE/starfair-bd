@@ -18,7 +18,7 @@ if (empty($_SESSION['admin_logged_in'])) {
 
 try {
     // Retrieve registrations newest first
-    $stmt = $pdo->query("SELECT `id`, `name`, `mobile`, `email`, `gender`, `created_at` FROM `registrations` ORDER BY `created_at` DESC");
+    $stmt = $pdo->query("SELECT `id`, `name`, `mobile`, `email`, `gender`, `programmes`, `created_at` FROM `registrations` ORDER BY `created_at` DESC");
     $registrations = $stmt->fetchAll();
     
     echo json_encode($registrations, JSON_UNESCAPED_SLASHES);

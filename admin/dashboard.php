@@ -85,6 +85,7 @@ if (empty($_SESSION['admin_logged_in'])) {
                                 <option value="Grooming">Grooming</option>
                                 <option value="Fine Arts">Fine Arts</option>
                                 <option value="Communication Skills">Communication Skills</option>
+                                <option value="Digital Marketing">Digital Marketing & Branding</option>
                             </select>
                             <button id="refreshRegsBtn" class="btn btn-gold btn-sm"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
                         </div>
