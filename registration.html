@@ -487,49 +487,10 @@
             once: true,
             disable: window.innerWidth < 768
         });
-
-        // Form Validation & Success Demo modal
-        const form = document.getElementById('admissionForm');
-        const declaration = document.getElementById('declaration');
-        const declFeedback = document.getElementById('declFeedback');
-        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            let isValid = form.checkValidity();
-            
-            // Check declaration manually
-            if (!declaration.checked) {
-                declFeedback.style.display = 'block';
-                isValid = false;
-            } else {
-                declFeedback.style.display = 'none';
-            }
-
-            if (!isValid) {
-                event.stopPropagation();
-                form.classList.add('was-validated');
-                
-                // Scroll to first error
-                const firstInvalid = form.querySelector(':invalid');
-                if (firstInvalid) {
-                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            } else {
-                form.classList.remove('was-validated');
-                successModal.show();
-                form.reset();
-            }
-        }, false);
-
-        declaration.addEventListener('change', function() {
-            if (declaration.checked) {
-                declFeedback.style.display = 'none';
-            } else {
-                declFeedback.style.display = 'block';
-            }
-        });
     </script>
+
+    <!-- Registration Form Script -->
+    <script src="assets/js/registration.js"></script>
 </body>
 
 </html>

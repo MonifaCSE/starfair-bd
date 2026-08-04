@@ -1,76 +1,155 @@
-// =========================
-// MAGAZINE DATA
-// =========================
+// ==========================================
+// DYNAMIC MAGAZINE INTEGRATION (PHP + MYSQL)
+// ==========================================
 
-const magazines = [
+// Fallback static magazines list for development / offline state
+let magazines = [
     {
         title: "Fashion Edition",
-        description: "Fashion, Beauty & Lifestyle",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf"
+        description: "Fashion, Beauty & Lifestyle trends.",
+        dateText: "January 2026",
+        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
+        coverUrl: "assets/images/magazine/page1.jpg"
     },
     {
         title: "Beauty Edition",
-        description: "Beauty & Pageantry",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf"
+        description: "Makeup, grooming, pageantry and lifestyle.",
+        dateText: "October 2025",
+        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
+        coverUrl: "assets/images/magazine/page2.jpg"
     },
     {
-        title: "Culture Edition",
-        description: "Culture & Art",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf"
+        title: "Cultural Edition",
+        description: "Cultural heritage, dance, art and community.",
+        dateText: "June 2025",
+        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
+        coverUrl: "assets/images/magazine/page3.jpg"
     },
     {
         title: "Lifestyle Edition",
-        description: "Lifestyle & Events",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf"
+        description: "Lifestyle trends, fashion, and social events.",
+        dateText: "March 2025",
+        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
+        coverUrl: "assets/images/magazine/page4.jpg"
     }
 ];
-
-// =========================
-// STATE
-// =========================
 
 let pageFlip = null;
 const flipSound = document.getElementById("flipSound");
 
-// =========================
-// BUTTON CLICKS
-// =========================
-
-document.querySelectorAll(".issue-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const issueIndex = parseInt(btn.dataset.issue);
-        const issue = magazines[issueIndex];
-        
-        // play flip sound
-        flipSound.currentTime = 0;
-        flipSound.volume = 0.4;
-        flipSound.play().catch(() => {});
-        
-        loadMagazine(issue);
-        setTimeout(() => {
-            document.getElementById("viewer").scrollIntoView({ behavior: "smooth" });
-        }, 100);
-    });
+// Initialize Magazine Section
+document.addEventListener("DOMContentLoaded", () => {
+    initializeMagazineApp();
 });
 
-// =========================
-// LOAD MAGAZINE FROM PDF
-// =========================
+async function initializeMagazineApp() {
+    try {
+        console.log("STAR FAIR: Fetching dynamic magazines from PHP Database...");
+        const response = await fetch('backend/magazine/list.php');
+        if (response.ok) {
+            const fetchedMagazines = await response.json();
+            if (fetchedMagazines && fetchedMagazines.length > 0) {
+                magazines = fetchedMagazines;
+                console.log(`STAR FAIR: Loaded ${magazines.length} magazines from database.`);
+            }
+        }
+    } catch (error) {
+        console.warn("STAR FAIR: Failed to query PHP backend, using static fallback:", error);
+    }
 
+    // 2. Render dynamic grid cards
+    renderMagazineCards();
+
+    // 3. Load initial active issue (index 0)
+    if (magazines.length > 0) {
+        loadMagazine(magazines[0]);
+    }
+}
+
+// Render issues grid markup matching design styles
+function renderMagazineCards() {
+    const container = document.querySelector(".latest-issues .row");
+    if (!container) return;
+
+    container.innerHTML = ""; // Wipe static HTML
+
+    magazines.forEach((mag, index) => {
+        const col = document.createElement("div");
+        col.className = "col-lg-3 col-md-6";
+        if (typeof AOS !== 'undefined') {
+            col.setAttribute("data-aos", "fade-up");
+            col.setAttribute("data-aos-delay", (index * 100).toString());
+        }
+
+        const isLatest = index === 0;
+        const defaultCover = `assets/images/magazine/page${(index % 4) + 1}.jpg`;
+
+        col.innerHTML = `
+            <div class="issue-card">
+                <div class="issue-image">
+                    <img src="${mag.coverUrl || defaultCover}" alt="${mag.title}">
+                    ${isLatest ? '<span class="issue-badge">Latest</span>' : ''}
+                </div>
+                <div class="issue-content">
+                    <small>${mag.dateText || "Released Edition"}</small>
+                    <h4>${mag.title}</h4>
+                    <p>${mag.description}</p>
+                    <a href="#viewer" class="issue-btn" data-issue="${index}">
+                        Read Now
+                    </a>
+                </div>
+            </div>
+        `;
+        container.appendChild(col);
+    });
+
+    // Re-bind click event listeners to new dynamic buttons
+    document.querySelectorAll(".issue-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const issueIndex = parseInt(btn.dataset.issue);
+            const issue = magazines[issueIndex];
+            
+            if (flipSound) {
+                flipSound.currentTime = 0;
+                flipSound.volume = 0.4;
+                flipSound.play().catch(() => {});
+            }
+            
+            loadMagazine(issue);
+            
+            setTimeout(() => {
+                const viewerSection = document.getElementById("viewer");
+                if (viewerSection) {
+                    viewerSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }, 100);
+        });
+    });
+
+    // Refresh AOS animations if dynamic cards were added
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
+}
+
+// Load magazine pages using PDF.js and StPageFlip
 async function loadMagazine(issue) {
-    document.getElementById("viewerTitle").textContent = issue.title;
-    document.getElementById("viewerDescription").textContent = issue.description;
+    const viewerTitle = document.getElementById("viewerTitle");
+    const viewerDesc = document.getElementById("viewerDescription");
+    if (viewerTitle) viewerTitle.textContent = issue.title;
+    if (viewerDesc) viewerDesc.textContent = issue.description;
 
-    // Step 1: Kill existing PageFlip safely
+    // Destroy existing PageFlip instance
     if (pageFlip) {
-        try { pageFlip.destroy(); } catch(e) { console.warn("destroy error:", e); }
+        try { pageFlip.destroy(); } catch(e) { console.warn("PageFlip destroy warning:", e); }
         pageFlip = null;
     }
 
-    // Step 2: Clear viewer-box and create a loader element
     const viewerBox = document.querySelector(".viewer-box");
-    viewerBox.innerHTML = "";  // Wipe previous contents
+    if (!viewerBox) return;
+
+    viewerBox.innerHTML = "";
 
     const loader = document.createElement("div");
     loader.id = "magazine-loader";
@@ -82,21 +161,21 @@ async function loadMagazine(issue) {
     `;
     viewerBox.appendChild(loader);
 
-    // Step 3: Create a brand new flipbook wrapper element (hidden initially)
     const newFlipbook = document.createElement("div");
     newFlipbook.id = "flipbook";
     newFlipbook.style.display = "none";
     viewerBox.appendChild(newFlipbook);
 
     try {
-        // Step 4: Fetch and render PDF pages using PDF.js
+        if (typeof pdfjsLib === 'undefined') {
+            throw new Error("PDF.js library is not loaded.");
+        }
+
         const pdf = await pdfjsLib.getDocument(issue.pdfUrl).promise;
         const totalPages = pdf.numPages;
 
         for (let i = 1; i <= totalPages; i++) {
             const page = await pdf.getPage(i);
-            
-            // Render at high resolution scale (1.5x)
             const viewport = page.getViewport({ scale: 1.5 });
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
@@ -115,11 +194,10 @@ async function loadMagazine(issue) {
             newFlipbook.appendChild(pageDiv);
         }
 
-        // Hide loader & show flipbook
         loader.style.display = "none";
         newFlipbook.style.display = "block";
 
-        // Step 5: Force browser reflow and initialize StPageFlip
+        // Trigger layout reflow
         void newFlipbook.offsetHeight;
         
         setTimeout(() => {
@@ -136,15 +214,10 @@ async function loadMagazine(issue) {
     }
 }
 
-// =========================
-// INIT FLIPBOOK
-// =========================
-
 function initFlipbook(totalPages) {
     const el = document.getElementById("flipbook");
-
-    if (!el) {
-        console.error("flipbook element not found");
+    if (!el || typeof St === 'undefined' || !St.PageFlip) {
+        console.error("PageFlip elements or libraries not ready.");
         return;
     }
 
@@ -168,9 +241,11 @@ function initFlipbook(totalPages) {
         pageFlip.loadFromHTML(document.querySelectorAll("#flipbook .page"));
 
         pageFlip.on("flip", () => {
-            flipSound.currentTime = 0;
-            flipSound.volume = 0.4;
-            flipSound.play().catch(() => {});
+            if (flipSound) {
+                flipSound.currentTime = 0;
+                flipSound.volume = 0.4;
+                flipSound.play().catch(() => {});
+            }
         });
 
         console.log("PageFlip initialized successfully with", totalPages, "pages");
@@ -179,9 +254,3 @@ function initFlipbook(totalPages) {
         console.error("PageFlip init failed:", err);
     }
 }
-
-// Initialize the first issue on page load
-document.addEventListener("DOMContentLoaded", () => {
-    const defaultIssue = magazines[0];
-    loadMagazine(defaultIssue);
-});

@@ -1,0 +1,3 @@
+# Protect sensitive student documents (NID, Birth Certificate, Portfolio) from direct public URL access
+Order Deny,Allow
+Deny from all
