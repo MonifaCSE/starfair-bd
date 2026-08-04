@@ -99,9 +99,9 @@ try {
     
     // Transform absolute storage path back to secure download URLs
     // The client will fetch these secure proxy URLs instead of direct storage paths
-    $registration['photoUrl'] = 'backend/admin/registration-view.php?id=' . $id . '&file=photo';
-    $registration['nidBcUrl'] = 'backend/admin/registration-view.php?id=' . $id . '&file=nid';
-    $registration['portfolioUrl'] = $registration['portfolio_path'] ? 'backend/admin/registration-view.php?id=' . $id . '&file=portfolio' : '';
+    $registration['photoUrl'] = '../backend/admin/registration-view.php?id=' . $id . '&file=photo';
+    $registration['nidBcUrl'] = '../backend/admin/registration-view.php?id=' . $id . '&file=nid';
+    $registration['portfolioUrl'] = $registration['portfolio_path'] ? '../backend/admin/registration-view.php?id=' . $id . '&file=portfolio' : '';
     
     echo json_encode($registration, JSON_UNESCAPED_SLASHES);
 

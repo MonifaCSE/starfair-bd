@@ -19,33 +19,33 @@ header('Content-Type: application/json; charset=utf-8');
 
 try {
     // --- 1. COLLECT & SANITIZE FORM INPUTS ---
-    $name = trim($_POST['fullName'] ?? '');
+    $name = trim($_POST['name'] ?? '');
     $dob = trim($_POST['dob'] ?? '');
-    $father_name = trim($_POST['fatherName'] ?? '');
-    $mother_name = trim($_POST['motherName'] ?? '');
+    $father_name = trim($_POST['father_name'] ?? '');
+    $mother_name = trim($_POST['mother_name'] ?? '');
     $gender = trim($_POST['gender'] ?? '');
-    $blood_group = trim($_POST['bloodGroup'] ?? '');
+    $blood_group = trim($_POST['blood_group'] ?? '');
     $nationality = trim($_POST['nationality'] ?? '');
     $occupation = trim($_POST['occupation'] ?? '');
     $education = trim($_POST['education'] ?? '');
     $mobile = trim($_POST['mobile'] ?? '');
-    $alt_mobile = trim($_POST['altMobile'] ?? '');
+    $alt_mobile = trim($_POST['alt_mobile'] ?? '');
     $email = trim($_POST['email'] ?? '');
-    $present_address = trim($_POST['presentAddress'] ?? '');
-    $permanent_address = trim($_POST['permanentAddress'] ?? '');
-    $guardian_name = trim($_POST['guardianName'] ?? '');
-    $guardian_mobile = trim($_POST['guardianMobile'] ?? '');
-    $emergency_name = trim($_POST['emergencyName'] ?? '');
-    $emergency_relation = trim($_POST['emergencyRelation'] ?? '');
+    $present_address = trim($_POST['present_address'] ?? '');
+    $permanent_address = trim($_POST['permanent_address'] ?? '');
+    $guardian_name = trim($_POST['guardian_name'] ?? '');
+    $guardian_mobile = trim($_POST['guardian_mobile'] ?? '');
+    $emergency_name = trim($_POST['emergency_name'] ?? '');
+    $emergency_relation = trim($_POST['emergency_relation'] ?? '');
     
     // Arrays from checkbox lists
     $programmes_arr = $_POST['programmes'] ?? [];
     $events_arr = $_POST['events'] ?? [];
     
-    $previous_experience = trim($_POST['prevExperience'] ?? '');
-    $medical_conditions = trim($_POST['medical'] ?? '');
-    $special_skills = trim($_POST['skills'] ?? '');
-    $why_join = trim($_POST['whyJoin'] ?? '');
+    $previous_experience = trim($_POST['previous_experience'] ?? '');
+    $medical_conditions = trim($_POST['medical_conditions'] ?? '');
+    $special_skills = trim($_POST['special_skills'] ?? '');
+    $why_join = trim($_POST['why_join'] ?? '');
 
     // --- 2. SERVER-SIDE VALIDATION ---
     if (empty($name) || empty($dob) || empty($father_name) || empty($mother_name) || empty($gender) || 
@@ -87,11 +87,11 @@ try {
     $reg_folder = REGISTRATION_UPLOAD_DIR . '/' . $unique_id;
 
     // Verify files presence (Photo & NID are required)
-    if (!isset($_FILES['photoFile']) || $_FILES['photoFile']['error'] !== UPLOAD_ERR_OK) {
+    if (!isset($_FILES['photo']) || $_FILES['photo']['error'] !== UPLOAD_ERR_OK) {
         echo json_encode(['success' => false, 'message' => 'Student Photo upload is required.']);
         exit;
     }
-    if (!isset($_FILES['nidFile']) || $_FILES['nidFile']['error'] !== UPLOAD_ERR_OK) {
+    if (!isset($_FILES['nid_bc']) || $_FILES['nid_bc']['error'] !== UPLOAD_ERR_OK) {
         echo json_encode(['success' => false, 'message' => 'NID / Birth Certificate document is required.']);
         exit;
     }
@@ -105,7 +105,7 @@ try {
     }
 
     // Helper logic to securely validate and process file upload
-    $upload_file = function($file_input, $prefix) use ($reg_folder, $ALLOWED_DOC_TYPES) {
+    $upload_file = function($file_input, $prefix) use ($reg_folder, $ALLOWED_DOC_TYPES, $unique_id) {
         $file = $_FILES[$file_input];
         
         // Basic upload error check
@@ -149,13 +149,13 @@ try {
     };
 
     // Upload files securely
-    $photo_path = $upload_file('photoFile', 'photo');
-    $nid_bc_path = $upload_file('nidFile', 'nid_bc');
+    $photo_path = $upload_file('photo', 'photo');
+    $nid_bc_path = $upload_file('nid_bc', 'nid_bc');
     
     // Portfolio is optional
     $portfolio_path = null;
-    if (isset($_FILES['portfolioFile']) && $_FILES['portfolioFile']['error'] === UPLOAD_ERR_OK) {
-        $portfolio_path = $upload_file('portfolioFile', 'portfolio');
+    if (isset($_FILES['portfolio']) && $_FILES['portfolio']['error'] === UPLOAD_ERR_OK) {
+        $portfolio_path = $upload_file('portfolio', 'portfolio');
     }
 
     // --- 4. DATABASE INSERTION ---
