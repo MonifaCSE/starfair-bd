@@ -2,37 +2,7 @@
 // DYNAMIC MAGAZINE INTEGRATION (PHP + MYSQL)
 // ==========================================
 
-// Fallback static magazines list for development / offline state
-let magazines = [
-    {
-        title: "Fashion Edition",
-        description: "Fashion, Beauty & Lifestyle trends.",
-        dateText: "January 2026",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
-        coverUrl: "assets/images/magazine/page1.jpg"
-    },
-    {
-        title: "Beauty Edition",
-        description: "Makeup, grooming, pageantry and lifestyle.",
-        dateText: "October 2025",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
-        coverUrl: "assets/images/magazine/page2.jpg"
-    },
-    {
-        title: "Cultural Edition",
-        description: "Cultural heritage, dance, art and community.",
-        dateText: "June 2025",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
-        coverUrl: "assets/images/magazine/page3.jpg"
-    },
-    {
-        title: "Lifestyle Edition",
-        description: "Lifestyle trends, fashion, and social events.",
-        dateText: "March 2025",
-        pdfUrl: "assets/pdf/magazine/flipbook.pdf",
-        coverUrl: "assets/images/magazine/page4.jpg"
-    }
-];
+let magazines = [];
 
 let pageFlip = null;
 const flipSound = document.getElementById("flipSound");
@@ -43,18 +13,52 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function initializeMagazineApp() {
+    let fetchError = null;
     try {
         console.log("STAR FAIR: Fetching dynamic magazines from PHP Database...");
         const response = await fetch('backend/magazine/list.php');
         if (response.ok) {
             const fetchedMagazines = await response.json();
-            if (fetchedMagazines && fetchedMagazines.length > 0) {
+            if (Array.isArray(fetchedMagazines)) {
                 magazines = fetchedMagazines;
                 console.log(`STAR FAIR: Loaded ${magazines.length} magazines from database.`);
+            } else {
+                fetchError = "Invalid data format received from server.";
             }
+        } else {
+            fetchError = `Server returned status ${response.status}: ${response.statusText}`;
         }
     } catch (error) {
-        console.warn("STAR FAIR: Failed to query PHP backend, using static fallback:", error);
+        console.error("STAR FAIR: Failed to query PHP backend:", error);
+        fetchError = error.message || error;
+    }
+
+    if (fetchError) {
+        // Display database loading error in the issues section container
+        const container = document.querySelector(".issues-section .row");
+        if (container) {
+            container.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="fa-solid fa-triangle-exclamation text-warning mb-3" style="font-size: 2.5rem; color: var(--gold);"></i>
+                    <p class="text-gold" style="color: var(--gold); font-size: 1.2rem; font-weight: 500;">Failed to load magazines from database.</p>
+                    <p class="text-muted small">${fetchError}</p>
+                </div>
+            `;
+        }
+        // Update the viewer as well
+        const viewerTitle = document.getElementById("viewerTitle");
+        const viewerDesc = document.getElementById("viewerDescription");
+        if (viewerTitle) viewerTitle.textContent = "DATABASE ERROR";
+        if (viewerDesc) viewerDesc.textContent = "Could not fetch publication data.";
+        const viewerBox = document.querySelector(".viewer-box");
+        if (viewerBox) {
+            viewerBox.innerHTML = `
+                <div class="text-center py-5">
+                    <p class="text-muted">Error details: ${fetchError}</p>
+                </div>
+            `;
+        }
+        return;
     }
 
     // 2. Render dynamic grid cards
@@ -63,23 +67,49 @@ async function initializeMagazineApp() {
     // 3. Load initial active issue (index 0)
     if (magazines.length > 0) {
         loadMagazine(magazines[0]);
+        
+        // Update hero cover image
+        const heroCoverImg = document.getElementById("magazineHeroCover");
+        if (heroCoverImg) {
+            const defaultCover = "assets/images/magazine/page1.jpg";
+            heroCoverImg.src = magazines[0].coverUrl || defaultCover;
+            heroCoverImg.alt = magazines[0].title;
+        }
+    } else {
+        const viewerTitle = document.getElementById("viewerTitle");
+        const viewerDesc = document.getElementById("viewerDescription");
+        if (viewerTitle) viewerTitle.textContent = "NO DIGITAL EDITIONS AVAILABLE";
+        if (viewerDesc) viewerDesc.textContent = "There are no magazine issues published yet.";
+        const viewerBox = document.querySelector(".viewer-box");
+        if (viewerBox) {
+            viewerBox.innerHTML = `
+                <div class="text-center py-5">
+                    <p class="text-muted">Once magazines are published from the Admin Panel, they will appear here.</p>
+                </div>
+            `;
+        }
     }
 }
 
 // Render issues grid markup matching design styles
 function renderMagazineCards() {
-    const container = document.querySelector(".latest-issues .row");
+    const container = document.querySelector(".issues-section .row");
     if (!container) return;
 
     container.innerHTML = ""; // Wipe static HTML
 
+    if (magazines.length === 0) {
+        container.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <p class="text-gold" style="color: var(--gold); font-size: 1.2rem; font-weight: 500;">No magazine issues published yet.</p>
+            </div>
+        `;
+        return;
+    }
+
     magazines.forEach((mag, index) => {
         const col = document.createElement("div");
         col.className = "col-lg-3 col-md-6";
-        if (typeof AOS !== 'undefined') {
-            col.setAttribute("data-aos", "fade-up");
-            col.setAttribute("data-aos-delay", (index * 100).toString());
-        }
 
         const isLatest = index === 0;
         const defaultCover = `assets/images/magazine/page${(index % 4) + 1}.jpg`;
@@ -163,7 +193,6 @@ async function loadMagazine(issue) {
 
     const newFlipbook = document.createElement("div");
     newFlipbook.id = "flipbook";
-    newFlipbook.style.display = "none";
     viewerBox.appendChild(newFlipbook);
 
     try {
@@ -174,9 +203,26 @@ async function loadMagazine(issue) {
         const pdf = await pdfjsLib.getDocument(issue.pdfUrl).promise;
         const totalPages = pdf.numPages;
 
+        // 1. Create page divs immediately with placeholders
+        const pageDivs = [];
         for (let i = 1; i <= totalPages; i++) {
-            const page = await pdf.getPage(i);
-            const viewport = page.getViewport({ scale: 1.5 });
+            const pageDiv = document.createElement("div");
+            pageDiv.className = "page";
+            pageDiv.dataset.pageIndex = i;
+            pageDiv.innerHTML = `
+                <div class="page-placeholder text-center d-flex flex-column justify-content-center align-items-center" style="height: 100%; background: #1a1a1a; color: #D4AF37; padding: 20px;">
+                    <div class="spinner-border spinner-border-sm text-gold" style="color: #D4AF37;" role="status"></div>
+                    <span class="mt-2 text-muted small" style="font-size: 0.75rem;">Loading page ${i}...</span>
+                </div>
+            `;
+            newFlipbook.appendChild(pageDiv);
+            pageDivs.push(pageDiv);
+        }
+
+        // Helper function for rendering a single page
+        const renderSinglePage = async (pageNumber, containerDiv) => {
+            const page = await pdf.getPage(pageNumber);
+            const viewport = page.getViewport({ scale: 1.1 });
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
             
@@ -188,21 +234,31 @@ async function loadMagazine(issue) {
                 viewport: viewport
             }).promise;
 
-            const pageDiv = document.createElement("div");
-            pageDiv.className = "page";
-            pageDiv.appendChild(canvas);
-            newFlipbook.appendChild(pageDiv);
-        }
+            containerDiv.innerHTML = ""; // Clear placeholder
+            containerDiv.appendChild(canvas);
+        };
 
+        // 2. Render Page 1 (Cover) immediately to show something to the user instantly
+        await renderSinglePage(1, pageDivs[0]);
+
+        // Hide the overall loader since the flipbook can be shown now
         loader.style.display = "none";
-        newFlipbook.style.display = "block";
 
-        // Trigger layout reflow
-        void newFlipbook.offsetHeight;
-        
+        // 3. Initialize St.PageFlip immediately!
         setTimeout(() => {
             initFlipbook(totalPages);
         }, 50);
+
+        // 4. Render the remaining pages in the background sequentially so it doesn't block the UI
+        (async () => {
+            for (let i = 2; i <= totalPages; i++) {
+                try {
+                    await renderSinglePage(i, pageDivs[i - 1]);
+                } catch (err) {
+                    console.warn(`Background render failed for page ${i}:`, err);
+                }
+            }
+        })();
 
     } catch (err) {
         console.error("PDF loading/rendering failed:", err);
