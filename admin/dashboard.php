@@ -24,7 +24,7 @@ if (empty($_SESSION['admin_logged_in'])) {
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <!-- Custom Admin CSS -->
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css?v=1.3">
 </head>
 
 <body class="admin-dashboard-body">
@@ -74,17 +74,16 @@ if (empty($_SESSION['admin_logged_in'])) {
                             <input type="text" id="regSearchInput" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Search by name, email or phone..." style="width: 250px;">
                             <select id="regProgramFilter" class="form-select form-select-sm bg-dark text-white border-secondary" style="width: 180px;">
                                 <option value="">All Programmes</option>
-                                <option value="Runway Modelling">Runway Modelling</option>
+                                <option value="Fashion Modeling">Fashion Modeling</option>
                                 <option value="Acting">Acting</option>
                                 <option value="Classical Dance">Classical Dance</option>
-                                <option value="Hiphop Dance">Hiphop Dance</option>
-                                <option value="Hosting">Hosting</option>
-                                <option value="Makeup">Makeup</option>
-                                <option value="Photography">Photography</option>
-                                <option value="Poetry">Poetry</option>
-                                <option value="Grooming">Grooming</option>
+                                <option value="Hip Hop Dance">Hip Hop Dance</option>
                                 <option value="Fine Arts">Fine Arts</option>
-                                <option value="Communication Skills">Communication Skills</option>
+                                <option value="Beauty Pageant">Beauty Pageant Grooming</option>
+                                <option value="Photography">Photography</option>
+                                <option value="Makeup">Fashion & Makeup</option>
+                                <option value="Grooming">Personal Grooming</option>
+                                <option value="Communication">Communication Skills</option>
                                 <option value="Digital Marketing">Digital Marketing & Branding</option>
                             </select>
                             <button id="refreshRegsBtn" class="btn btn-gold btn-sm"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
