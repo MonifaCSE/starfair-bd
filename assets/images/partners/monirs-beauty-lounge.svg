@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#000000" />
+  
+  <!-- Definitions -->
+  <defs>
+    <!-- Standard Petal Shape -->
+    <path id="petal" d="M 0,0 C 8,-12 22,-12 30,0 C 22,12 8,12 0,0 Z" />
+  </defs>
+  
+  <g transform="translate(10, 5)">
+    <!-- Layered Petals Fan on the Left -->
+    <g transform="translate(30, 35)">
+      <!-- Petals rotated and layered in a fan opening to the right -->
+      <use href="#petal" fill="#D24A8D" opacity="0.4" transform="rotate(180) translate(4,0)" />
+      <use href="#petal" fill="#B83A7A" opacity="0.45" transform="rotate(160) translate(4,0)" />
+      <use href="#petal" fill="#A02A68" opacity="0.5" transform="rotate(140) translate(4,0)" />
+      <use href="#petal" fill="#881D58" opacity="0.55" transform="rotate(120) translate(4,0)" />
+      <use href="#petal" fill="#701249" opacity="0.6" transform="rotate(100) translate(4,0)" />
+      <use href="#petal" fill="#58083A" opacity="0.65" transform="rotate(80) translate(4,0)" />
+      
+      <use href="#petal" fill="#B83A7A" opacity="0.45" transform="rotate(-160) translate(4,0)" />
+      <use href="#petal" fill="#A02A68" opacity="0.5" transform="rotate(-140) translate(4,0)" />
+      <use href="#petal" fill="#881D58" opacity="0.55" transform="rotate(-120) translate(4,0)" />
+      <use href="#petal" fill="#701249" opacity="0.6" transform="rotate(-100) translate(4,0)" />
+      <use href="#petal" fill="#58083A" opacity="0.65" transform="rotate(-80) translate(4,0)" />
+    </g>
+    
+    <!-- Text Group -->
+    <g transform="translate(70, 0)">
+      <!-- MONIR's in serif font -->
+      <text x="0" y="32" font-family="'Didot', 'Playfair Display', 'Georgia', serif" font-weight="600" font-size="28" fill="#FFFFFF" letter-spacing="1.5">MONIR's</text>
+      <!-- beauty lounge in sans-serif pink font -->
+      <text x="75" y="48" font-family="'Outfit', 'Helvetica', sans-serif" font-weight="600" font-size="14" fill="#B83A7A" letter-spacing="0.5">beauty lounge</text>
+    </g>
+  </g>
+</svg>
