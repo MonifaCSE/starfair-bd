@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2026 at 10:38 AM
+-- Generation Time: Aug 16, 2026 at 08:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -112,9 +112,8 @@ CREATE TABLE `registrations` (
 --
 
 INSERT INTO `registrations` (`id`, `name`, `dob`, `father_name`, `mother_name`, `gender`, `blood_group`, `nationality`, `occupation`, `education`, `mobile`, `alt_mobile`, `email`, `present_address`, `permanent_address`, `guardian_name`, `guardian_mobile`, `emergency_name`, `emergency_relation`, `programmes`, `events`, `previous_experience`, `medical_conditions`, `special_skills`, `why_join`, `photo_path`, `nid_bc_path`, `portfolio_path`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'John Doe Test', '2000-01-01', 'Father Test', 'Mother Test', 'male', 'O+', 'Bangladeshi', 'Student', 'HSC', '01712345678', '01812345678', 'john.doe@test.com', 'Dhaka, Bangladesh', 'Dhaka, Bangladesh', 'Guardian Test', '01912345678', 'Emergency Test', 'Brother', '\"Acting\"', '\"Fashion Show\"', NULL, NULL, NULL, 'Interested in modeling.', '/photo_ab10f6a334cda6f6.jpg', '/nid_bc_c85694a8605fafb6.pdf', NULL, 'pending', '2026-08-04 11:42:35', '2026-08-04 11:42:35'),
-(2, 'John Doe Test', '2000-01-01', 'Father Test', 'Mother Test', 'male', 'O+', 'Bangladeshi', 'Student', 'HSC', '01712345678', '01812345678', 'john.doe@test.com', 'Dhaka, Bangladesh', 'Dhaka, Bangladesh', 'Guardian Test', '01912345678', 'Emergency Test', 'Brother', '\"Acting\"', '\"Fashion Show\"', NULL, NULL, NULL, 'Interested in modeling.', '175e58cd091ae7e9c12c35a1/photo_ba28ee09be3bed53.jpg', '175e58cd091ae7e9c12c35a1/nid_bc_6278a139d3476abc.pdf', NULL, 'pending', '2026-08-04 11:42:50', '2026-08-04 11:42:50'),
-(3, 'Monifa Sultana', '1998-12-10', 'Nurul Alam', 'Mariam Sultana', 'female', 'O+', 'Bangladeshi', 'educator', 'B.sc in CSE', '01791662433', '01791662418', 'monifasultana5637@gmail.com', 'Bakolia, Chittagong', 'chittagong', 'Mariam Sultana', '01791662418', 'Mariam Sultana', 'Mother', '[\"Communication\"]', '[]', 'nnn', 'nn', 'nn', 'nnn', 'e402c068ffc717a3c32c6a6f/photo_a77ef45a74bb50e7.png', 'e402c068ffc717a3c32c6a6f/nid_bc_3bc1e05b3f8bacd5.pdf', 'e402c068ffc717a3c32c6a6f/portfolio_d86cd64020e102c2.pdf', 'pending', '2026-08-04 11:44:54', '2026-08-04 11:44:54');
+(3, 'Monifa Sultana', '1998-12-10', 'Nurul Alam', 'Mariam Sultana', 'female', 'O+', 'Bangladeshi', 'educator', 'B.sc in CSE', '01791662433', '01791662418', 'monifasultana5637@gmail.com', 'Bakolia, Chittagong', 'chittagong', 'Mariam Sultana', '01791662418', 'Mariam Sultana', 'Mother', '[\"Communication\"]', '[]', 'nnn', 'nn', 'nn', 'nnn', 'e402c068ffc717a3c32c6a6f/photo_a77ef45a74bb50e7.png', 'e402c068ffc717a3c32c6a6f/nid_bc_3bc1e05b3f8bacd5.pdf', 'e402c068ffc717a3c32c6a6f/portfolio_d86cd64020e102c2.pdf', 'pending', '2026-08-04 11:44:54', '2026-08-04 11:44:54'),
+(4, 'Safa Marua', '2005-01-15', 'Nurul Alam', 'Mariam Sultana', 'female', 'O+', 'Bangladeshi', 'Student', 'BBA in Marketing', '01791662433', '01791662433', 'monifasultana5637@gmail.com', 'Kumira, Chittagong', 'dddddddddd', 'Mariam Sultana', '01791662433', 'Monifa Sultana', 'Sister', '[\"Fashion Modeling\"]', '[]', NULL, NULL, NULL, 'ssssssssss', '9214cc163bf21d5754b230ba/photo_4c74ba6b735c310e.png', '9214cc163bf21d5754b230ba/nid_bc_6be11338fb1ab497.pdf', NULL, 'pending', '2026-08-09 08:01:37', '2026-08-09 08:01:37');
 
 --
 -- Indexes for dumped tables
@@ -159,7 +158,7 @@ ALTER TABLE `magazines`
 -- AUTO_INCREMENT for table `registrations`
 --
 ALTER TABLE `registrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
