@@ -258,3 +258,34 @@ body {
         grid-column: span 1;
     }
 }
+
+/* Fix input text visibility and browser autofill issues */
+#regSearchInput, .form-control, .form-select {
+    color: #ffffff !important;
+}
+
+#regSearchInput::-webkit-input-placeholder {
+    color: #bbbbbb !important;
+    opacity: 1 !important;
+}
+#regSearchInput::-moz-placeholder {
+    color: #bbbbbb !important;
+    opacity: 1 !important;
+}
+#regSearchInput:-ms-input-placeholder {
+    color: #bbbbbb !important;
+    opacity: 1 !important;
+}
+#regSearchInput::placeholder {
+    color: #bbbbbb !important;
+    opacity: 1 !important;
+}
+
+/* Force typed text to remain white even when autofilled or active */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--input-bg) inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+}

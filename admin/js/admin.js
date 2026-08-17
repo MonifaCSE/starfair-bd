@@ -155,7 +155,9 @@ function filterAndRenderRegistrations() {
     if (filteredRegs.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6" class="text-center text-muted py-4">No student registrations found.</td>
+                <td colspan="6" class="text-center py-4" style="color: var(--gold); font-weight: 500;">
+                    <i class="fa-solid fa-circle-info me-2"></i> No student registrations found.
+                </td>
             </tr>
         `;
         return;
@@ -220,7 +222,9 @@ async function loadMagazines() {
         if (magazines.length === 0) {
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="5" class="text-center text-muted py-4">No published magazines found.</td>
+                    <td colspan="5" class="text-center py-4" style="color: var(--gold); font-weight: 500;">
+                        <i class="fa-solid fa-circle-info me-2"></i> No published magazines found.
+                    </td>
                 </tr>
             `;
             return;
