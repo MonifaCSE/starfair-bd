@@ -16,6 +16,16 @@ require_once __DIR__ . '/../database.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
+// Check if POST request size exceeds post_max_size
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && isset($_SERVER['CONTENT_LENGTH'])) {
+    $maxSize = ini_get('post_max_size');
+    echo json_encode([
+        'success' => false,
+        'message' => "The upload failed because the request size exceeds the server's post_max_size limit ({$maxSize}). Please compress your files or increase this limit in php.ini."
+    ]);
+    exit;
+}
+
 // Strict session check
 if (empty($_SESSION['admin_logged_in'])) {
     http_response_code(403);
@@ -43,8 +53,25 @@ try {
     }
 
     // --- 1. UPLOAD PDF ISSUE (Required) ---
-    if (!isset($_FILES['magPdfFile']) || $_FILES['magPdfFile']['error'] !== UPLOAD_ERR_OK) {
+    if (!isset($_FILES['magPdfFile'])) {
         echo json_encode(['success' => false, 'message' => 'Magazine PDF file is required.']);
+        exit;
+    }
+
+    if ($_FILES['magPdfFile']['error'] !== UPLOAD_ERR_OK) {
+        $errorCode = $_FILES['magPdfFile']['error'];
+        $msg = 'Failed to upload PDF file.';
+        if ($errorCode === UPLOAD_ERR_INI_SIZE) {
+            $maxUpload = ini_get('upload_max_filesize');
+            $msg = "The PDF file size exceeds the server's upload_max_filesize limit ({$maxUpload}). Please compress your PDF or increase this limit in php.ini.";
+        } else if ($errorCode === UPLOAD_ERR_FORM_SIZE) {
+            $msg = "The PDF file size exceeds the MAX_FILE_SIZE limit specified in the HTML form.";
+        } else if ($errorCode === UPLOAD_ERR_PARTIAL) {
+            $msg = "The file was only partially uploaded.";
+        } else if ($errorCode === UPLOAD_ERR_NO_FILE) {
+            $msg = "Magazine PDF file is required.";
+        }
+        echo json_encode(['success' => false, 'message' => $msg]);
         exit;
     }
 
@@ -75,7 +102,19 @@ try {
 
     // --- 2. UPLOAD COVER IMAGE (Optional) ---
     $cover_filename = null;
-    if (isset($_FILES['magCoverFile']) && $_FILES['magCoverFile']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['magCoverFile']) && $_FILES['magCoverFile']['error'] !== UPLOAD_ERR_NO_FILE) {
+        if ($_FILES['magCoverFile']['error'] !== UPLOAD_ERR_OK) {
+            $errorCode = $_FILES['magCoverFile']['error'];
+            $msg = 'Failed to upload cover image.';
+            if ($errorCode === UPLOAD_ERR_INI_SIZE) {
+                $maxUpload = ini_get('upload_max_filesize');
+                $msg = "The cover image size exceeds the server's upload_max_filesize limit ({$maxUpload}). Please compress your image or increase this limit in php.ini.";
+            }
+            @unlink($pdf_destination); // Clean up PDF
+            echo json_encode(['success' => false, 'message' => $msg]);
+            exit;
+        }
+
         $cover_file = $_FILES['magCoverFile'];
         
         // Cover size validation (5MB)

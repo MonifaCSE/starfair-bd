@@ -17,6 +17,16 @@ require_once __DIR__ . '/../database.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
+// Check if POST request size exceeds post_max_size
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && isset($_SERVER['CONTENT_LENGTH'])) {
+    $maxSize = ini_get('post_max_size');
+    echo json_encode([
+        'success' => false,
+        'message' => "The upload failed because the request size exceeds the server's post_max_size limit ({$maxSize}). Please compress your files or increase this limit in php.ini."
+    ]);
+    exit;
+}
+
 try {
     // --- 1. COLLECT & SANITIZE FORM INPUTS ---
     $name = trim($_POST['name'] ?? '');
