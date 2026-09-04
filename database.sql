@@ -61,3 +61,54 @@ CREATE TABLE IF NOT EXISTS `magazines` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 4. Page Images Table (Dynamic Event & Gallery Image Management)
+CREATE TABLE IF NOT EXISTS `page_images` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `section` VARCHAR(50) NOT NULL,
+  `page` VARCHAR(100) NOT NULL,
+  `image_key` VARCHAR(100) NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `page_image_key` (`section`, `page`, `image_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 5. Mentors Table (Dynamic Profile Management)
+CREATE TABLE IF NOT EXISTS `mentors` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `type` VARCHAR(50) NOT NULL, -- 'mentor', 'advisor', 'trainer'
+  `name` VARCHAR(255) NOT NULL,
+  `designation` VARCHAR(255) NOT NULL,
+  `bio` TEXT NOT NULL,
+  `image_path` VARCHAR(255) DEFAULT NULL, -- NULL means use original asset (placeholder or image)
+  `display_order` INT NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 6. Partners Table (Official Collaboration Partners)
+CREATE TABLE IF NOT EXISTS `partners` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `display_order` INT NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 7. News Table (Dynamic News & Announcements Manager)
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `category` VARCHAR(100) NOT NULL DEFAULT 'General',
+  `summary` TEXT NOT NULL,
+  `content` LONGTEXT NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `is_featured` TINYINT NOT NULL DEFAULT 0,
+  `display_order` INT NOT NULL DEFAULT 0,
+  `published_date` DATE NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

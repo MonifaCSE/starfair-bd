@@ -1,2 +1,24 @@
-# Hostinger Production Package
+# Zip and Compressed Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.gz
+
+# Production / Build Packages
+*production*
 STAR-FAIR-HOSTINGER-PRODUCTION.zip
+starfair-production.zip
+dist/
+build/
+
+# Performance Audits & Generated Reports
+lighthouse_*.json
+*_report.txt
+
+# Logs & OS / IDE Files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

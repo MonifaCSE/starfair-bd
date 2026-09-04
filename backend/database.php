@@ -15,6 +15,18 @@ try {
     ];
     
     $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
+    
+    // Auto-create page_images table if not present
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `page_images` (
+      `id` INT AUTO_INCREMENT PRIMARY KEY,
+      `section` VARCHAR(50) NOT NULL,
+      `page` VARCHAR(100) NOT NULL,
+      `image_key` VARCHAR(100) NOT NULL,
+      `image_path` VARCHAR(255) NOT NULL,
+      `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      UNIQUE KEY `page_image_key` (`section`, `page`, `image_key`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
 } catch (PDOException $e) {
     // If the request is an API request, return JSON. Otherwise, display a clean error.
     $isJson = isset($_SERVER['HTTP_ACCEPT']) && str_contains($_SERVER['HTTP_ACCEPT'], 'application/json');

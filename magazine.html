@@ -93,7 +93,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <!-- Custom CSS -->
-
+    <link rel="stylesheet" href="assets/css/style1.css">
     <link rel="stylesheet" href="assets/css/magazine.css">
 
 </head>
@@ -110,7 +110,7 @@
 
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
 
-                    <img src="assets/images/logo/logo.jpg" alt="Star Fair BD Logo" class="logo-img">
+                    <img src="assets/images/logo/logo.jpg" alt="Star Fair BD Logo" class="logo-img" data-key="logo">
 
                     <span class="logo-text">
                          
@@ -164,7 +164,7 @@
 MAGAZINE HERO START
 ========================== -->
 
-    <section class="magazine-hero">
+    <section class="magazine-hero" data-bg-key="hero_img">
 
         <div class="container">
 
@@ -216,7 +216,10 @@ MAGAZINE HERO START
 
                     <div class="cover-box">
 
-                        <img id="magazineHeroCover" src="assets/images/magazine/page1.jpg" alt="Magazine Cover">
+                        <img id="magazineHeroCover"
+                             src="assets/images/magazine/page1.jpg"
+                             alt="Latest Magazine Cover"
+                             class="cover-loading">
 
                     </div>
 
@@ -419,6 +422,44 @@ MAGAZINE HERO END
 
     <!-- Others ISSUES END -->
 
+    <!-- =========================
+    NEWS & ANNOUNCEMENTS SECTION START (Canvas Split Layout)
+    ========================== -->
+    <section class="news-section py-5" id="news" style="background: #ffffff; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <div class="container">
+            <!-- Header -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-subtitle" style="color: #D4AF37; font-weight:600; letter-spacing:3px; text-transform:uppercase;">Updates & Articles</span>
+                <h2 class="section-title text-dark mt-2" style="font-weight:700; font-size:2.5rem; text-transform: uppercase;">News & Announcements</h2>
+                <div style="width: 80px; height: 3px; background: #D4AF37; margin: 15px auto 0;"></div>
+            </div>
+
+            <!-- Split Column Grid -->
+            <div class="row g-4 mt-2">
+                <!-- Left: Featured Spotlight Card -->
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div id="featuredNewsContainer">
+                        <!-- Loaded dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Right: Recent News Feed List -->
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="news-sidebar-card p-4 rounded" style="background: #fdfdfd; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                        <div class="sidebar-header border-bottom border-secondary pb-2 mb-3">
+                            <h5 class="text-gold mb-0" style="color: #D4AF37; font-weight: 600;"><i class="fa-solid fa-list-ul me-2"></i> Recent Stories</h5>
+                        </div>
+                        <div id="newsSidebarList" class="news-scroll-container" style="max-height: 480px; overflow-y: auto; padding-right: 5px;">
+                            <!-- Loaded dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =========================
+    NEWS & ANNOUNCEMENTS SECTION END
+    ========================== -->
 
     <!-- MAGAZINE VIEWER START -->
 
@@ -496,7 +537,16 @@ MAGAZINE HERO END
     </script>
 
     <!-- Magazine Controller Script -->
-    <script src="assets/js/magazine.js?v=1.0.2"></script>
+    <script src="assets/js/magazine.js?v=2.0.0"></script>
+    <script src="assets/js/dynamic-images.js"></script>
+    <script src="assets/js/dynamic-news.js?v=1.0.2"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            disable: window.innerWidth < 768
+        });
+    </script>
 </body>
 
 </html>

@@ -100,57 +100,14 @@ try {
         exit;
     }
 
-    // --- 2. UPLOAD COVER IMAGE (Optional) ---
-    $cover_filename = null;
-    if (isset($_FILES['magCoverFile']) && $_FILES['magCoverFile']['error'] !== UPLOAD_ERR_NO_FILE) {
-        if ($_FILES['magCoverFile']['error'] !== UPLOAD_ERR_OK) {
-            $errorCode = $_FILES['magCoverFile']['error'];
-            $msg = 'Failed to upload cover image.';
-            if ($errorCode === UPLOAD_ERR_INI_SIZE) {
-                $maxUpload = ini_get('upload_max_filesize');
-                $msg = "The cover image size exceeds the server's upload_max_filesize limit ({$maxUpload}). Please compress your image or increase this limit in php.ini.";
-            }
-            @unlink($pdf_destination); // Clean up PDF
-            echo json_encode(['success' => false, 'message' => $msg]);
-            exit;
-        }
-
-        $cover_file = $_FILES['magCoverFile'];
-        
-        // Cover size validation (5MB)
-        if ($cover_file['size'] > MAX_FILE_SIZE) {
-            @unlink($pdf_destination); // Clean up PDF
-            echo json_encode(['success' => false, 'message' => 'Cover image size cannot exceed 5MB.']);
-            exit;
-        }
-
-        // Cover MIME check
-        $cover_mime = $finfo->file($cover_file['tmp_name']);
-        if (!array_key_exists($cover_mime, $ALLOWED_COVER_TYPES)) {
-            @unlink($pdf_destination); // Clean up PDF
-            echo json_encode(['success' => false, 'message' => 'Invalid cover image type. JPG, PNG, and WEBP only.']);
-            exit;
-        }
-
-        $cover_ext = $ALLOWED_COVER_TYPES[$cover_mime];
-        $cover_filename = 'cover_' . bin2hex(random_bytes(10)) . '.' . $cover_ext;
-        $cover_destination = MAGAZINE_UPLOAD_DIR . '/' . $cover_filename;
-
-        if (!move_uploaded_file($cover_file['tmp_name'], $cover_destination)) {
-            @unlink($pdf_destination); // Clean up PDF
-            echo json_encode(['success' => false, 'message' => 'Failed to save cover image on server.']);
-            exit;
-        }
-    }
-
-    // --- 3. SAVE TO DATABASE ---
-    $stmt = $pdo->prepare("INSERT INTO `magazines` (title, description, date_text, pdf_path, cover_path, display_order) VALUES (?, ?, ?, ?, ?, ?)");
+    // --- 2. SAVE TO DATABASE ---
+    // cover_path is always NULL — the PDF first page is rendered as cover dynamically by the frontend.
+    $stmt = $pdo->prepare("INSERT INTO `magazines` (title, description, date_text, pdf_path, cover_path, display_order) VALUES (?, ?, ?, ?, NULL, ?)");
     $stmt->execute([
         $title,
         $description,
         $date_text,
         $pdf_filename,
-        $cover_filename,
         $display_order
     ]);
 

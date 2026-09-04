@@ -58,6 +58,26 @@ if (empty($_SESSION['admin_logged_in'])) {
                     <i class="fa-solid fa-book-open me-2"></i> Magazine Manager
                 </button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="false">
+                    <i class="fa-solid fa-image me-2"></i> Image Manager
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="team-tab" data-bs-toggle="tab" data-bs-target="#team" type="button" role="tab" aria-controls="team" aria-selected="false">
+                    <i class="fa-solid fa-graduation-cap me-2"></i> Mentor & Advisor Manager
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="partners-tab" data-bs-toggle="tab" data-bs-target="#partners" type="button" role="tab" aria-controls="partners" aria-selected="false">
+                    <i class="fa-solid fa-handshake me-2"></i> Collaboration Partners
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#newsTab" type="button" role="tab" aria-controls="newsTab" aria-selected="false">
+                    <i class="fa-solid fa-newspaper me-2"></i> News & Announcements
+                </button>
+            </li>
         </ul>
 
         <!-- TAB CONTENT PANELS -->
@@ -144,11 +164,7 @@ if (empty($_SESSION['admin_logged_in'])) {
                                         <label for="magOrder" class="form-label">Display Order Index <span class="text-gold">*</span></label>
                                         <input type="number" class="form-control" id="magOrder" name="magOrder" required value="1" min="1" placeholder="Ascending order in dropdown">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="magCoverFile" class="form-label">Cover Image File <span class="text-muted small">(Optional)</span></label>
-                                        <input type="file" class="form-control" id="magCoverFile" name="magCoverFile" accept="image/*">
-                                        <div class="form-text text-muted small">Falls back to dynamic placeholder covers if empty</div>
-                                    </div>
+
                                     <div class="mb-4">
                                         <label for="magPdfFile" class="form-label">Magazine PDF File <span class="text-gold">*</span></label>
                                         <input type="file" class="form-control" id="magPdfFile" name="magPdfFile" required accept="application/pdf">
@@ -192,6 +208,311 @@ if (empty($_SESSION['admin_logged_in'])) {
                         </div>
                     </div>
 
+                </div>
+            </div>
+
+            <!-- IMAGE MANAGER TAB -->
+            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                <div class="row">
+                    <!-- LEFT COLUMN: CATEGORIES -->
+                    <div class="col-md-4">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0 text-gold"><i class="fa-solid fa-folder me-2"></i> Categories</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="imageSectionSelect" class="form-label text-gold">Category Section</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="imageSectionSelect">
+                                        <option value="global">Global Settings</option>
+                                        <option value="main">Homepage & Main Pages</option>
+                                        <option value="courses">Course Pages</option>
+                                        <option value="events">Events Dropdown</option>
+                                        <option value="gallery">Gallery Dropdown</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagePageSelect" class="form-label text-gold">Select Page</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="imagePageSelect">
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: IMAGE SLOTS -->
+                    <div class="col-md-8">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0 text-gold" id="selectedPageTitle"><i class="fa-solid fa-images me-2"></i> Manage Page Images</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="pageSlotsContainer">
+                                    <p class="text-muted text-center py-4">Select a category and page to manage images.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENTOR & ADVISOR MANAGER TAB -->
+            <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-tab">
+                <div class="row">
+                    <!-- LEFT COLUMN: MEMBER SELECT -->
+                    <div class="col-md-4">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0 text-gold"><i class="fa-solid fa-users me-2"></i> Profile Directory</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="teamTypeSelect" class="form-label text-gold">Filter Directory By Type</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="teamTypeSelect">
+                                        <option value="mentor">Mentors</option>
+                                        <option value="advisor">Advisors / Board of Directors</option>
+                                        <option value="trainer">Professional Trainers</option>
+                                    </select>
+                                </div>
+                                <div class="list-group bg-dark border-secondary" id="teamMembersList" style="max-height: 400px; overflow-y: auto;">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: MEMBER EDIT FORM -->
+                    <div class="col-md-8">
+                        <div class="card admin-card" id="memberEditCard" style="display: none;">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0 text-gold" id="editingMemberTitle"><i class="fa-solid fa-user-edit me-2"></i> Edit Profile</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="memberEditForm" enctype="multipart/form-data">
+                                    <input type="hidden" id="editMemberId" name="id">
+                                    
+                                    <div class="mb-3">
+                                        <label for="editMemberName" class="form-label text-gold">Name</label>
+                                        <input type="text" class="form-control bg-dark text-white border-secondary" id="editMemberName" name="name" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="editMemberDesignation" class="form-label text-gold">Designation</label>
+                                        <input type="text" class="form-control bg-dark text-white border-secondary" id="editMemberDesignation" name="designation" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="editMemberBio" class="form-label text-gold">Bio / Description</label>
+                                        <textarea class="form-control bg-dark text-white border-secondary" id="editMemberBio" name="bio" rows="6" required></textarea>
+                                    </div>
+
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-sm-4 text-center">
+                                            <div class="border border-secondary rounded p-2 mb-2 bg-dark" style="height: 120px; display: flex; align-items: center; justify-content: center;">
+                                                <img id="editMemberPhotoPreview" src="" class="img-fluid rounded" style="max-height: 100px; display: none;">
+                                                <div id="editMemberPhotoPlaceholder" class="text-muted"><i class="fa-solid fa-user fa-3x"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label for="editMemberPhotoFile" class="form-label text-gold">Replace Profile Photo</label>
+                                            <input class="form-control bg-dark text-white border-secondary mb-2" type="file" id="editMemberPhotoFile" name="imageFile" accept="image/*">
+                                            <button type="button" class="btn btn-outline-danger btn-sm" id="btnResetMemberPhoto">
+                                                <i class="fa-solid fa-undo me-1"></i> Revert to Default Photo
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end gap-2 border-top border-secondary pt-3">
+                                        <button type="submit" class="btn btn-gold btn-sm px-4" id="btnSaveMember">
+                                            <i class="fa-solid fa-save me-1"></i> Save Changes
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card admin-card text-center py-5 text-muted" id="memberEditPlaceholder">
+                            <i class="fa-solid fa-id-card fa-4x mb-3 text-gold" style="opacity: 0.3;"></i>
+                            <p>Select a profile from the directory to start editing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLLABORATION PARTNERS TAB -->
+            <div class="tab-pane fade" id="partners" role="tabpanel" aria-labelledby="partners-tab">
+                <div class="row">
+                    <!-- LEFT COLUMN: PARTNER LIST -->
+                    <div class="col-md-4">
+                        <div class="card admin-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0 text-gold"><i class="fa-solid fa-handshake me-2"></i> Partner Grid</h5>
+                                <button type="button" class="btn btn-gold btn-sm" id="btnAddNewPartner">
+                                    <i class="fa-solid fa-plus me-1"></i> Add New
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group bg-dark border-secondary" id="partnersList" style="max-height: 450px; overflow-y: auto;">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: PARTNER EDIT / ADD FORM -->
+                    <div class="col-md-8">
+                        <div class="card admin-card" id="partnerEditCard" style="display: none;">
+                            <div class="card-header">
+                                <h5 class="mb-0 text-gold" id="partnerFormTitle"><i class="fa-solid fa-pen-to-square me-2"></i> Add / Edit Partner</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="partnerForm" enctype="multipart/form-data">
+                                    <input type="hidden" id="partnerId" name="partnerId">
+                                    
+                                    <div class="mb-3">
+                                        <label for="partnerName" class="form-label text-gold">Partner / Sponsor Name</label>
+                                        <input type="text" class="form-control bg-dark text-white border-secondary" id="partnerName" name="partnerName" required placeholder="e.g. Green Leaf">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="partnerOrder" class="form-label text-gold">Display Order Index</label>
+                                        <input type="number" class="form-control bg-dark text-white border-secondary" id="partnerOrder" name="partnerOrder" required value="1" min="0" placeholder="e.g. 1">
+                                    </div>
+
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-sm-4 text-center">
+                                            <div class="border border-secondary rounded p-2 mb-2 bg-dark d-flex align-items-center justify-content-center" style="height: 120px;">
+                                                <img id="partnerLogoPreview" src="" class="img-fluid rounded" style="max-height: 100px; display: none;">
+                                                <div id="partnerLogoPlaceholder" class="text-muted"><i class="fa-solid fa-handshake fa-3x"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label for="partnerLogo" class="form-label text-gold">Upload Logo Image</label>
+                                            <input class="form-control bg-dark text-white border-secondary mb-2" type="file" id="partnerLogo" name="partnerLogo" accept="image/*">
+                                            <div class="form-text text-muted small">JPG, PNG, WEBP, or SVG vectors are allowed.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between border-top border-secondary pt-3 mt-4">
+                                        <button type="button" class="btn btn-outline-danger btn-sm" id="btnDeletePartner" style="display: none;">
+                                            <i class="fa-solid fa-trash me-1"></i> Delete Partner
+                                        </button>
+                                        <span class="flex-grow-1"></span>
+                                        <button type="submit" class="btn btn-gold btn-sm px-4" id="btnSavePartner">
+                                            <i class="fa-solid fa-save me-1"></i> Save Partner
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card admin-card text-center py-5 text-muted" id="partnerPlaceholder">
+                            <i class="fa-solid fa-handshake fa-4x mb-3 text-gold" style="opacity: 0.3;"></i>
+                            <p>Select a partner logo from the list to edit, or click "Add New" to add a new sponsor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEWS & ANNOUNCEMENTS TAB -->
+            <div class="tab-pane fade" id="newsTab" role="tabpanel" aria-labelledby="news-tab">
+                <div class="row">
+                    <!-- LEFT COLUMN: ARTICLE DIRECTORY -->
+                    <div class="col-md-4">
+                        <div class="card admin-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0 text-gold"><i class="fa-solid fa-newspaper me-2"></i> News Feed</h5>
+                                <button type="button" class="btn btn-gold btn-sm" id="btnAddNewNews">
+                                    <i class="fa-solid fa-plus me-1"></i> Add Article
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group bg-dark border-secondary" id="newsFeedList" style="max-height: 480px; overflow-y: auto;">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: ARTICLE ADD / EDIT FORM -->
+                    <div class="col-md-8">
+                        <div class="card admin-card" id="newsEditCard" style="display: none;">
+                            <div class="card-header">
+                                <h5 class="mb-0 text-gold" id="newsFormTitle"><i class="fa-solid fa-pen-to-square me-2"></i> Add / Edit News Article</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="newsForm" enctype="multipart/form-data">
+                                    <input type="hidden" id="newsId" name="newsId">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-8 mb-3">
+                                            <label for="newsTitleInput" class="form-label text-gold">Article Title</label>
+                                            <input type="text" class="form-control bg-dark text-white border-secondary" id="newsTitleInput" name="newsTitle" required placeholder="e.g. Agreement Ceremony with Bank">
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="newsCategoryInput" class="form-label text-gold">Category</label>
+                                            <input type="text" class="form-control bg-dark text-white border-secondary" id="newsCategoryInput" name="newsCategory" required placeholder="e.g. Business, Fashion">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newsDateInput" class="form-label text-gold">Published Date</label>
+                                            <input type="date" class="form-control bg-dark text-white border-secondary" id="newsDateInput" name="newsDate" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newsOrderInput" class="form-label text-gold">Display Order</label>
+                                            <input type="number" class="form-control bg-dark text-white border-secondary" id="newsOrderInput" name="newsOrder" required value="1" min="0">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="newsSummaryInput" class="form-label text-gold">Short Summary / Excerpt</label>
+                                        <textarea class="form-control bg-dark text-white border-secondary" id="newsSummaryInput" name="newsSummary" rows="3" required placeholder="Brief description to show in homepage news card feed list..."></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="newsContentInput" class="form-label text-gold">Full Article Content</label>
+                                        <textarea class="form-control bg-dark text-white border-secondary" id="newsContentInput" name="newsContent" rows="8" required placeholder="Detailed body content for the full details page. Double line break represents a new paragraph..."></textarea>
+                                    </div>
+
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-sm-4 text-center">
+                                            <div class="border border-secondary rounded p-2 mb-2 bg-dark d-flex align-items-center justify-content-center" style="height: 120px;">
+                                                <img id="newsCoverPreview" src="" class="img-fluid rounded" style="max-height: 100px; display: none;">
+                                                <div id="newsCoverPlaceholder" class="text-muted"><i class="fa-solid fa-image fa-3x"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label for="newsImage" class="form-label text-gold">Upload Cover Image</label>
+                                            <input class="form-control bg-dark text-white border-secondary mb-2" type="file" id="newsImage" name="newsImage" accept="image/*">
+                                            <div class="form-text text-muted small">Recommended size: 800x500px. JPG, PNG, WEBP allowed.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 form-check form-switch mt-3">
+                                        <input class="form-check-input" type="checkbox" id="isFeaturedInput" name="isFeatured" value="1">
+                                        <label class="form-check-label text-gold" for="isFeaturedInput">
+                                            <i class="fa-solid fa-star text-gold me-1"></i> Highlight as Featured Spotlight Article (Left Spotlight Box)
+                                        </label>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between border-top border-secondary pt-3 mt-4">
+                                        <button type="button" class="btn btn-outline-danger btn-sm" id="btnDeleteNews">
+                                            <i class="fa-solid fa-trash me-1"></i> Delete Article
+                                        </button>
+                                        <span class="flex-grow-1"></span>
+                                        <button type="submit" class="btn btn-gold btn-sm px-4" id="btnSaveNews">
+                                            <i class="fa-solid fa-save me-1"></i> Publish Article
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card admin-card text-center py-5 text-muted" id="newsPlaceholder">
+                            <i class="fa-solid fa-newspaper fa-4x mb-3 text-gold" style="opacity: 0.3;"></i>
+                            <p>Select an article from the directory to edit, or click "Add Article" to publish a new one.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

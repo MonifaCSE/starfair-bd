@@ -68,12 +68,10 @@ async function initializeMagazineApp() {
     if (magazines.length > 0) {
         loadMagazine(magazines[0]);
         
-        // Update hero cover image
+        // Render latest PDF page 1 into the hero img
         const heroCoverImg = document.getElementById("magazineHeroCover");
         if (heroCoverImg) {
-            const defaultCover = "assets/images/magazine/page1.jpg";
-            heroCoverImg.src = magazines[0].coverUrl || defaultCover;
-            heroCoverImg.alt = magazines[0].title;
+            generatePdfCoverToImg(magazines[0].pdfUrl, heroCoverImg);
         }
     } else {
         const viewerTitle = document.getElementById("viewerTitle");
@@ -117,7 +115,7 @@ function renderMagazineCards() {
         col.innerHTML = `
             <div class="issue-card">
                 <div class="issue-image">
-                    <img src="${mag.coverUrl || defaultCover}" alt="${mag.title}">
+                    <img id="issue-cover-${index}" src="${mag.coverUrl || defaultCover}" alt="${mag.title}">
                     ${isLatest ? '<span class="issue-badge">Latest</span>' : ''}
                 </div>
                 <div class="issue-content">
@@ -131,6 +129,12 @@ function renderMagazineCards() {
             </div>
         `;
         container.appendChild(col);
+
+        // Always generate cover from PDF page 1 (no separate cover image)
+        const imgEl = col.querySelector(`#issue-cover-${index}`);
+        if (imgEl) {
+            generatePdfCoverToImg(mag.pdfUrl, imgEl);
+        }
     });
 
     // Re-bind click event listeners to new dynamic buttons
@@ -147,6 +151,12 @@ function renderMagazineCards() {
             }
             
             loadMagazine(issue);
+
+            // Update hero cover with the selected issue's PDF page 1
+            const heroCoverImg = document.getElementById("magazineHeroCover");
+            if (heroCoverImg) {
+                generatePdfCoverToImg(issue.pdfUrl, heroCoverImg);
+            }
             
             setTimeout(() => {
                 const viewerSection = document.getElementById("viewer");
@@ -308,5 +318,35 @@ function initFlipbook(totalPages) {
 
     } catch(err) {
         console.error("PageFlip init failed:", err);
+    }
+}
+
+// Render PDF first page as a data-URL into an <img> element.
+// Works for both the hero cover and issue card thumbnails.
+async function generatePdfCoverToImg(pdfUrl, imgEl) {
+    try {
+        if (typeof pdfjsLib === 'undefined') return;
+
+        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+        const page = await pdf.getPage(1);
+
+        // Scale to a reasonable render size
+        const scale = 1.0;
+        const viewport = page.getViewport({ scale });
+
+        const canvas = document.createElement("canvas");
+        canvas.width  = viewport.width;
+        canvas.height = viewport.height;
+
+        await page.render({
+            canvasContext: canvas.getContext("2d"),
+            viewport
+        }).promise;
+
+        imgEl.src = canvas.toDataURL("image/jpeg", 0.88);
+
+    } catch (err) {
+        console.warn("PDF cover render failed:", err);
+        // Fallback already in place via the default src
     }
 }
