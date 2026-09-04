@@ -15,6 +15,26 @@ RedirectMatch 404 /\..*
     </IfModule>
 </FilesMatch>
 
+# Rewrites for Legacy Course HTML URLs to Dynamic PHP Course Detail Pages
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteRule ^course\.html$ course.php [L]
+    RewriteRule ^modeling\.html$ course-detail.php?slug=modeling [L]
+    RewriteRule ^acting\.html$ course-detail.php?slug=acting [L]
+    RewriteRule ^hiphop-dance\.html$ course-detail.php?slug=hiphop-dance [L]
+    RewriteRule ^classical-dance\.html$ course-detail.php?slug=classical-dance [L]
+    RewriteRule ^fine-arts\.html$ course-detail.php?slug=fine-arts [L]
+    RewriteRule ^poetry\.html$ course-detail.php?slug=poetry [L]
+    RewriteRule ^hosting\.html$ course-detail.php?slug=hosting [L]
+    RewriteRule ^pageant\.html$ course-detail.php?slug=pageant [L]
+    RewriteRule ^photography\.html$ course-detail.php?slug=photography [L]
+    RewriteRule ^makeup\.html$ course-detail.php?slug=makeup [L]
+    RewriteRule ^communication\.html$ course-detail.php?slug=communication [L]
+    RewriteRule ^grooming\.html$ course-detail.php?slug=grooming [L]
+    RewriteRule ^digital-marketing\.html$ course-detail.php?slug=digital-marketing [L]
+</IfModule>
+
 # Enforce clean HTTPS redirection
 # <IfModule mod_rewrite.c>
 #     RewriteEngine On

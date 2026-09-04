@@ -1,30 +1,98 @@
+<?php
+/**
+ * STAR FAIR - Dynamic Course Detail Page
+ * Core PHP 8.x + MySQL
+ */
+
+require_once __DIR__ . '/backend/database.php';
+
+$slug = trim($_GET['slug'] ?? '');
+$id = intval($_GET['id'] ?? 0);
+$preview = !empty($_GET['preview']) && !empty($_SESSION['admin_logged_in']);
+
+$course = null;
+$modules = [];
+$schedules = [];
+$careers = [];
+$galleries = [];
+
+if (!empty($slug) || $id > 0) {
+    try {
+        if (!empty($slug)) {
+            $stmt = $pdo->prepare($preview ? "SELECT * FROM `courses` WHERE `slug` = ?" : "SELECT * FROM `courses` WHERE `slug` = ? AND `status` = 'published'");
+            $stmt->execute([$slug]);
+        } else {
+            $stmt = $pdo->prepare($preview ? "SELECT * FROM `courses` WHERE `id` = ?" : "SELECT * FROM `courses` WHERE `id` = ? AND `status` = 'published'");
+            $stmt->execute([$id]);
+        }
+        $course = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($course) {
+            $cId = $course['id'];
+
+            // Modules
+            $stmtMod = $pdo->prepare("SELECT `module_name` FROM `course_modules` WHERE `course_id` = ? ORDER BY `display_order` ASC, `id` ASC");
+            $stmtMod->execute([$cId]);
+            $modules = $stmtMod->fetchAll(PDO::FETCH_ASSOC);
+
+            // Schedules
+            $stmtSch = $pdo->prepare("SELECT `day_name`, `time_text`, `topic_text` FROM `course_schedules` WHERE `course_id` = ? ORDER BY `display_order` ASC, `id` ASC");
+            $stmtSch->execute([$cId]);
+            $schedules = $stmtSch->fetchAll(PDO::FETCH_ASSOC);
+
+            // Careers
+            $stmtCar = $pdo->prepare("SELECT `career_title` FROM `course_careers` WHERE `course_id` = ? ORDER BY `display_order` ASC, `id` ASC");
+            $stmtCar->execute([$cId]);
+            $careers = $stmtCar->fetchAll(PDO::FETCH_ASSOC);
+
+            // Galleries
+            $stmtGal = $pdo->prepare("SELECT `image_path`, `alt_text` FROM `course_galleries` WHERE `course_id` = ? ORDER BY `display_order` ASC, `id` ASC");
+            $stmtGal->execute([$cId]);
+            $galleries = $stmtGal->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (Exception $e) {
+        $course = null;
+    }
+}
+
+if (!$course) {
+    http_response_code(404);
+    include __DIR__ . '/404.html';
+    exit;
+}
+
+$domain = 'https://starfairbd.com';
+$canonicalUrl = $domain . '/course-detail.php?slug=' . urlencode($course['slug']);
+$metaTitle = htmlspecialchars($course['meta_title'] ?: ($course['title'] . ' | STAR FAIR Bangladesh'));
+$metaDesc = htmlspecialchars($course['meta_description'] ?: $course['short_description']);
+$ogImage = str_starts_with($course['hero_image'], 'http') ? $course['hero_image'] : ($domain . '/' . ltrim($course['hero_image'], '/'));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>window.location.replace("course-detail.php?slug=hiphop-dance");</script>
 
-    <!-- SEO Meta Tags -->
-    <title>STAR FAIR | Fashion & Cultural Training Institute Bangladesh</title>
-    <meta name="description" content="STAR FAIR Fashion and Cultural Training Institute is Bangladesh's leading platform for professional modeling, grooming, acting, dance, photography, and cultural training. Nurturing future stars since 2009.">
-    <meta name="keywords" content="Star Fair, Star Fair BD, modeling course Dhaka, grooming training Bangladesh, acting classes, dance academy, photography course, beauty pageant preparation, Alamgir Hossain Alo">
-    <link rel="canonical" href="https://starfairbd.com/hiphop-dance.html">
+    <!-- Dynamic SEO Meta Tags -->
+    <title><?php echo $metaTitle; ?></title>
+    <meta name="description" content="<?php echo $metaDesc; ?>">
+    <meta name="keywords" content="Star Fair, Star Fair BD, <?php echo htmlspecialchars($course['title']); ?>, modeling course Dhaka, grooming training Bangladesh">
+    <link rel="canonical" href="<?php echo $canonicalUrl; ?>">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://starfairbd.com/hiphop-dance.html">
-    <meta property="og:title" content="STAR FAIR | Fashion & Cultural Training Institute Bangladesh">
-    <meta property="og:description" content="Nurturing future stars in fashion, beauty, culture, and lifestyle since 2009. Professional courses in runway modeling, acting, photography, and grooming.">
-    <meta property="og:image" content="https://starfairbd.com/assets/images/logo/logo.jpg">
+    <meta property="og:url" content="<?php echo $canonicalUrl; ?>">
+    <meta property="og:title" content="<?php echo $metaTitle; ?>">
+    <meta property="og:description" content="<?php echo $metaDesc; ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($ogImage); ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://starfairbd.com/hiphop-dance.html">
-    <meta property="twitter:title" content="STAR FAIR | Fashion & Cultural Training Institute Bangladesh">
-    <meta property="twitter:description" content="Nurturing future stars in fashion, beauty, culture, and lifestyle since 2009. Professional courses in runway modeling, acting, photography, and grooming.">
-    <meta property="twitter:image" content="https://starfairbd.com/assets/images/logo/logo.jpg">
+    <meta property="twitter:url" content="<?php echo $canonicalUrl; ?>">
+    <meta property="twitter:title" content="<?php echo $metaTitle; ?>">
+    <meta property="twitter:description" content="<?php echo $metaDesc; ?>">
+    <meta property="twitter:image" content="<?php echo htmlspecialchars($ogImage); ?>">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/logo/favicon.ico">
@@ -32,50 +100,30 @@
 
     <!-- JSON-LD Organization Schema -->
     <script type="application/ld+json">
-    {{
+    {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "STAR FAIR Fashion and Cultural Training Institute",
       "alternateName": "STAR FAIR BD",
-      "url": "https://starfairbd.com",
-      "logo": "https://starfairbd.com/assets/images/logo/logo.jpg",
-      "sameAs": [
-        "https://www.facebook.com/starfairfashion/",
-        "https://www.instagram.com/alamgir_hossain_alo/",
-        "https://www.youtube.com/@starfairbd"
-      ]
-    }}
+      "url": "<?php echo $domain; ?>",
+      "logo": "<?php echo $domain; ?>/assets/images/logo/logo.jpg"
+    }
     </script>
 
-    <!-- JSON-LD Educational Organization Schema -->
+    <!-- JSON-LD Course Schema -->
     <script type="application/ld+json">
-    {{
+    {
       "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "STAR FAIR Fashion and Cultural Training Institute",
-      "url": "https://starfairbd.com",
-      "logo": "https://starfairbd.com/assets/images/logo/logo.jpg",
-      "description": "Bangladesh's leading training institute for runway modeling, personal grooming, acting, dance, photography and beauty pageants.",
-      "parentOrganization": {{
-        "@type": "Organization",
-        "name": "STAR FAIR BD"
-      }}
-    }}
+      "@type": "Course",
+      "name": "<?php echo htmlspecialchars($course['title']); ?>",
+      "description": "<?php echo $metaDesc; ?>",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "STAR FAIR Fashion and Cultural Training Institute",
+        "sameAs": "<?php echo $domain; ?>"
+      }
+    }
     </script>
-
-    <!-- Google Analytics Placeholder -->
-    <!-- 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){{dataLayer.push(arguments);}}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
-
-    <!-- Google Search Console Placement -->
-    <meta name="google-site-verification" content="GSC-PLACEHOLDER-ID" />
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -123,7 +171,7 @@
                         <li class="nav-item"><a class="nav-link" href="advisor-trainers.html">Advisor & Trainers</a></li>
                         <li class="nav-item"><a class="nav-link" href="award.html">Award</a></li>
                         <li class="nav-item"><a class="nav-link" href="magazine.html">Magazine</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="course.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="course.php">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -133,12 +181,12 @@
     <!-- HEADER END -->
 
     <!-- HERO SECTION START -->
-    <section class="program-detail-hero" data-bg-key="hero_img" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/programs/hiphop_dance.png'); background-size: cover; background-position: center;">
+    <section class="program-detail-hero" data-bg-key="hero_img" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<?php echo htmlspecialchars($course['hero_image']); ?>'); background-size: cover; background-position: center;">
         <div class="container text-center" data-aos="fade-up">
-            <span class="program-meta-badge">CORE PROGRAMME</span>
-            <h1 class="program-detail-title">Hip Hop Dance</h1>
+            <span class="program-meta-badge"><?php echo htmlspecialchars($course['category_badge']); ?></span>
+            <h1 class="program-detail-title"><?php echo htmlspecialchars($course['title']); ?></h1>
             <div style="width: 80px; height: 3px; background: #D4AF37; margin: 20px auto;"></div>
-            <p class="lead" style="max-width: 800px; margin: 0 auto; color: #ddd;">Master contemporary Hip Hop dance, choreography and freestyle.</p>
+            <p class="lead" style="max-width: 800px; margin: 0 auto; color: #ddd;"><?php echo htmlspecialchars($course['short_description']); ?></p>
         </div>
     </section>
     <!-- HERO SECTION END -->
@@ -151,22 +199,39 @@
                 <div class="col-lg-8" data-aos="fade-right">
                     <h3 class="form-section-title" style="margin-top:0;">Program Overview</h3>
                     <p style="color:#ccc; line-height:1.9; font-size:1.05rem; text-align: justify;">
-                        Master contemporary Hip Hop dance through foundation techniques, choreography, freestyle, musicality, stage performance, teamwork, fitness, and competition-level training.
+                        <?php echo nl2br(htmlspecialchars($course['full_description'])); ?>
                     </p>
                     
+                    <?php if (!empty($modules)): ?>
                     <h3 class="form-section-title" style="margin-top:50px;">Training Modules</h3>
                     <ul class="module-list-group">
-                        <li>Hip Hop Foundation Techniques</li><li>Choreography & Musicality</li><li>Freestyle & Improvisation</li><li>Stage Performance & Presence</li><li>Competition-Level Fitness & Routine</li>
+                        <?php foreach ($modules as $m): ?>
+                            <li><?php echo htmlspecialchars($m['module_name']); ?></li>
+                        <?php endforeach; ?>
                     </ul>
+                    <?php endif; ?>
                 </div>
                 <!-- Right Box Info -->
                 <div class="col-lg-4" data-aos="fade-left">
                     <div class="program-info-box">
                         <h4>Program Details</h4>
                         <ul class="program-info-list">
-                            <li><strong>Duration:</strong> <span>Ongoing Programme</span></li>
-                            <li><strong>Admission Fee:</strong> <span>Admission BDT 3,000 + Monthly BDT 1,000</span></li>
-                            <li><strong>Eligibility:</strong> <span>Dance enthusiasts of all skill levels.</span></li>
+                            <li><strong>Duration:</strong> <span><?php echo htmlspecialchars($course['duration']); ?></span></li>
+                            <?php if (!empty($course['admission_fee'])): ?>
+                                <li><strong>Admission Fee:</strong> <span><?php echo htmlspecialchars($course['admission_fee']); ?></span></li>
+                            <?php endif; ?>
+                            <?php if (!empty($course['course_fee']) && $course['course_fee'] !== $course['admission_fee']): ?>
+                                <li><strong>Course Fee:</strong> <span><?php echo htmlspecialchars($course['course_fee']); ?></span></li>
+                            <?php endif; ?>
+                            <?php if (!empty($course['eligibility'])): ?>
+                                <li><strong>Eligibility:</strong> <span><?php echo htmlspecialchars($course['eligibility']); ?></span></li>
+                            <?php endif; ?>
+                            <?php if (!empty($course['age_requirement'])): ?>
+                                <li><strong>Age Requirement:</strong> <span><?php echo htmlspecialchars($course['age_requirement']); ?></span></li>
+                            <?php endif; ?>
+                            <?php if (!empty($course['course_type'])): ?>
+                                <li><strong>Course Type:</strong> <span><?php echo htmlspecialchars($course['course_type']); ?></span></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -176,31 +241,52 @@
     <!-- PROGRAM OVERVIEW END -->
 
     <!-- SCHEDULE & OPPORTUNITIES START -->
+    <?php if (!empty($schedules) || !empty($careers)): ?>
     <section class="program-section-dark" style="background:#080808; border-top: 1px solid rgba(212, 175, 55, 0.15);">
         <div class="container">
             <div class="row g-5">
                 <!-- Weekly schedule -->
-                <div class="col-lg-6" data-aos="fade-right">
+                <?php if (!empty($schedules)): ?>
+                <div class="<?php echo !empty($careers) ? 'col-lg-6' : 'col-lg-12'; ?>" data-aos="fade-right">
                     <h3 class="form-section-title" style="margin-top:0;">Weekly Schedule</h3>
                     <div style="background:#111; border: 1px solid rgba(212, 175, 55, 0.2); padding: 30px; border-radius:12px;">
                         <ul style="list-style:none; padding:0; margin:0;">
-                            <li class='py-2 border-bottom border-secondary'><i class='fa-solid fa-clock text-gold me-2'></i><strong>Friday:</strong> <span style='color: #ddd; margin-left: 8px;'>5:00 PM - 6:30 PM (Hip Hop Class)</span></li><li class='py-2 border-bottom border-secondary'><i class='fa-solid fa-clock text-gold me-2'></i><strong>Tuesday:</strong> <span style='color: #ddd; margin-left: 8px;'>4:00 PM - 5:30 PM (Freestyle Class)</span></li>
+                            <?php foreach ($schedules as $s): ?>
+                                <li class="py-2 border-bottom border-secondary">
+                                    <i class="fa-solid fa-clock text-gold me-2"></i>
+                                    <strong><?php echo htmlspecialchars($s['day_name']); ?>:</strong> 
+                                    <span style="color: #ddd; margin-left: 8px;">
+                                        <?php echo htmlspecialchars($s['time_text']); ?>
+                                        <?php if (!empty($s['topic_text'])): ?>
+                                            (<?php echo htmlspecialchars($s['topic_text']); ?>)
+                                        <?php endif; ?>
+                                    </span>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
+                <?php endif; ?>
+
                 <!-- Career Opps -->
-                <div class="col-lg-6" data-aos="fade-left">
+                <?php if (!empty($careers)): ?>
+                <div class="<?php echo !empty($schedules) ? 'col-lg-6' : 'col-lg-12'; ?>" data-aos="fade-left">
                     <h3 class="form-section-title" style="margin-top:0;">Career Opportunities</h3>
                     <ul class="module-list-group">
-                        <li>Professional Dancer</li><li>Choreographer</li><li>Dance Instructor</li><li>Backup Dancer</li><li>Cultural Performer</li>
+                        <?php foreach ($careers as $c): ?>
+                            <li><?php echo htmlspecialchars($c['career_title']); ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
+    <?php endif; ?>
     <!-- SCHEDULE & OPPORTUNITIES END -->
 
     <!-- GALLERY START -->
+    <?php if (!empty($galleries)): ?>
     <section class="program-section-dark" style="border-top: 1px solid rgba(212, 175, 55, 0.15);">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
@@ -209,18 +295,15 @@
                 <div style="width: 80px; height: 3px; background: #D4AF37; margin: 0 auto 15px;"></div>
             </div>
             <div class="row g-3" data-aos="fade-up">
+                <?php foreach ($galleries as $g): ?>
                 <div class="col-md-3 col-6">
-                    <img data-key="gallery_1" src="assets/images/course-gallery/hiphop1.png" class="gallery-img img-fluid" style="height: 250px; object-fit: cover;" alt="Hip Hop Dance Performance">
-                </div><div class="col-md-3 col-6">
-                    <img data-key="gallery_2" src="assets/images/course-gallery/hiphop2.png" class="gallery-img img-fluid" style="height: 250px; object-fit: cover;" alt="Dance Choreography Session">
-                </div><div class="col-md-3 col-6">
-                    <img data-key="gallery_3" src="assets/images/course-gallery/hiphop3.png" class="gallery-img img-fluid" style="height: 250px; object-fit: cover;" alt="Dance Show Finale">
-                </div><div class="col-md-3 col-6">
-                    <img data-key="gallery_4" src="assets/images/course-gallery/hiphop4.png" class="gallery-img img-fluid" style="height: 250px; object-fit: cover;" alt="Dance Stage Highlight">
+                    <img src="<?php echo htmlspecialchars($g['image_path']); ?>" class="gallery-img img-fluid" style="height: 250px; object-fit: cover;" alt="<?php echo htmlspecialchars($g['alt_text'] ?: 'Program Highlight'); ?>">
                 </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
+    <?php endif; ?>
     <!-- GALLERY END -->
 
     <!-- REGISTRATION CTA START -->
@@ -231,7 +314,7 @@
                 <p class="lead text-muted mb-4" style="color: #bbb !important;">
                     Take the first step towards building a successful career. Apply today for admission.
                 </p>
-                <a href="registration.html" class="btn-register">Apply Online Now</a>
+                <a href="registration.html?course=<?php echo urlencode($course['slug']); ?>" class="btn-register">Apply Online Now</a>
             </div>
         </div>
     </section>
@@ -288,7 +371,6 @@
             disable: window.innerWidth < 768
         });
     </script>
-
 
     <script src="assets/js/dynamic-images.js"></script>
 </body>

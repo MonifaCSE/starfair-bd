@@ -3,6 +3,24 @@
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
+    // URL Query Parameter Pre-selection for Courses (e.g. registration.html?course=modeling)
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCourseParam = urlParams.get('course') || urlParams.get('slug') || urlParams.get('program');
+
+    if (selectedCourseParam) {
+        const paramLower = decodeURIComponent(selectedCourseParam).toLowerCase();
+        const checkboxes = document.querySelectorAll('input[name="programmes[]"]');
+        
+        checkboxes.forEach(cb => {
+            const valLower = cb.value.toLowerCase();
+            const idLower = cb.id.toLowerCase();
+            if (paramLower.includes(valLower) || valLower.includes(paramLower) || paramLower.includes(idLower)) {
+                cb.checked = true;
+                cb.closest('.form-check')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    }
+
     const form = document.getElementById('admissionForm');
     const declaration = document.getElementById('declaration');
     const declFeedback = document.getElementById('declFeedback');

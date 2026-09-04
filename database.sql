@@ -112,3 +112,66 @@ CREATE TABLE IF NOT EXISTS `news` (
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- 8. Courses Table (Dynamic Course/Program Manager)
+CREATE TABLE IF NOT EXISTS `courses` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `slug` VARCHAR(100) NOT NULL UNIQUE,
+  `category` VARCHAR(50) NOT NULL DEFAULT 'core_programme',
+  `category_badge` VARCHAR(100) NOT NULL DEFAULT 'CORE PROGRAMME',
+  `short_description` TEXT NOT NULL,
+  `full_description` LONGTEXT NOT NULL,
+  `hero_image` VARCHAR(255) NOT NULL,
+  `duration` VARCHAR(100) NOT NULL,
+  `admission_fee` VARCHAR(255) DEFAULT NULL,
+  `course_fee` VARCHAR(255) DEFAULT NULL,
+  `eligibility` TEXT DEFAULT NULL,
+  `age_requirement` VARCHAR(100) DEFAULT NULL,
+  `course_type` VARCHAR(100) DEFAULT NULL,
+  `status` ENUM('published', 'draft') NOT NULL DEFAULT 'published',
+  `display_order` INT NOT NULL DEFAULT 1,
+  `meta_title` VARCHAR(255) DEFAULT NULL,
+  `meta_description` TEXT DEFAULT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 9. Course Modules Table
+CREATE TABLE IF NOT EXISTS `course_modules` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `course_id` INT NOT NULL,
+  `module_name` VARCHAR(255) NOT NULL,
+  `display_order` INT NOT NULL DEFAULT 1,
+  FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 10. Course Schedules Table
+CREATE TABLE IF NOT EXISTS `course_schedules` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `course_id` INT NOT NULL,
+  `day_name` VARCHAR(100) NOT NULL,
+  `time_text` VARCHAR(255) NOT NULL,
+  `topic_text` VARCHAR(255) DEFAULT NULL,
+  `display_order` INT NOT NULL DEFAULT 1,
+  FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 11. Course Careers Table
+CREATE TABLE IF NOT EXISTS `course_careers` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `course_id` INT NOT NULL,
+  `career_title` VARCHAR(255) NOT NULL,
+  `display_order` INT NOT NULL DEFAULT 1,
+  FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 12. Course Galleries Table
+CREATE TABLE IF NOT EXISTS `course_galleries` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `course_id` INT NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `alt_text` VARCHAR(255) DEFAULT NULL,
+  `display_order` INT NOT NULL DEFAULT 1,
+  FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

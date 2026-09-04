@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initializeDashboard() {
     loadRegistrations();
     loadMagazines();
+    initializeCourseManager();
 
     // Bind reload/refresh buttons
     const refreshRegsBtn = document.getElementById("refreshRegsBtn");
@@ -1783,5 +1784,384 @@ async function handleDeleteNews() {
         deleteBtn.disabled = false;
         deleteBtn.innerHTML = originalHtml;
     }
+}
+
+// ==========================================
+// COURSE MANAGER CONTROLLER
+// ==========================================
+let allAdminCourses = [];
+
+function initializeCourseManager() {
+    const btnAddNewCourse = document.getElementById("btnAddNewCourse");
+    const courseCategoryFilter = document.getElementById("courseCategoryFilter");
+    const courseSearchInput = document.getElementById("courseSearchInput");
+    const courseForm = document.getElementById("courseForm");
+    const btnAddModuleRow = document.getElementById("btnAddModuleRow");
+    const btnAddScheduleRow = document.getElementById("btnAddScheduleRow");
+    const btnAddCareerRow = document.getElementById("btnAddCareerRow");
+
+    if (btnAddNewCourse) {
+        btnAddNewCourse.addEventListener("click", () => openCourseModal(null));
+    }
+    if (courseCategoryFilter) {
+        courseCategoryFilter.addEventListener("change", renderAdminCoursesTable);
+    }
+    if (courseSearchInput) {
+        courseSearchInput.addEventListener("input", renderAdminCoursesTable);
+    }
+    if (courseForm) {
+        courseForm.addEventListener("submit", handleSaveCourse);
+    }
+    if (btnAddModuleRow) {
+        btnAddModuleRow.addEventListener("click", () => addModuleRow());
+    }
+    if (btnAddScheduleRow) {
+        btnAddScheduleRow.addEventListener("click", () => addScheduleRow());
+    }
+    if (btnAddCareerRow) {
+        btnAddCareerRow.addEventListener("click", () => addCareerRow());
+    }
+
+    // Hero image preview listener
+    const heroFile = document.getElementById("heroImageFile");
+    if (heroFile) {
+        heroFile.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (evt) => {
+                    document.getElementById("heroImagePreview").src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Load initial courses list
+    loadAdminCourses();
+}
+
+async function loadAdminCourses() {
+    const tableBody = document.getElementById("coursesTableBody");
+    if (!tableBody) return;
+
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="7" class="text-center py-4">
+                <div class="spinner-border text-gold" role="status"></div>
+                <p class="mt-2 text-muted mb-0">Fetching course directory...</p>
+            </td>
+        </tr>
+    `;
+
+    try {
+        const response = await fetch("../backend/admin/courses.php");
+        const result = await response.json();
+
+        if (result.success) {
+            allAdminCourses = result.courses || [];
+            renderAdminCoursesTable();
+        } else {
+            tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger py-4">${result.message || "Failed to load courses."}</td></tr>`;
+        }
+    } catch (err) {
+        console.error("Fetch courses error:", err);
+        tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger py-4">An error occurred while loading courses.</td></tr>`;
+    }
+}
+
+function renderAdminCoursesTable() {
+    const tableBody = document.getElementById("coursesTableBody");
+    if (!tableBody) return;
+
+    const catFilter = (document.getElementById("courseCategoryFilter")?.value || "").toLowerCase();
+    const searchVal = (document.getElementById("courseSearchInput")?.value || "").toLowerCase();
+
+    const filtered = allAdminCourses.filter(c => {
+        const matchesCat = !catFilter || (c.category || "").toLowerCase() === catFilter;
+        const matchesSearch = !searchVal || 
+            (c.title || "").toLowerCase().includes(searchVal) || 
+            (c.slug || "").toLowerCase().includes(searchVal) ||
+            (c.short_description || "").toLowerCase().includes(searchVal);
+        return matchesCat && matchesSearch;
+    });
+
+    if (filtered.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4">No matching courses found.</td></tr>`;
+        return;
+    }
+
+    tableBody.innerHTML = filtered.map(c => {
+        const statusBadge = c.status === 'published' 
+            ? `<span class="badge bg-success" style="cursor:pointer;" onclick="toggleCourseStatus(${c.id})" title="Click to unpublish">Published</span>`
+            : `<span class="badge bg-secondary" style="cursor:pointer;" onclick="toggleCourseStatus(${c.id})" title="Click to publish">Draft</span>`;
+        
+        const catBadge = (c.category === 'core_programme') 
+            ? `<span class="badge bg-warning text-dark">Core Programme</span>`
+            : `<span class="badge bg-info text-dark">Professional Dev</span>`;
+
+        return `
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="../${c.hero_image}" style="width: 45px; height: 35px; object-fit: cover; border-radius: 4px;" onerror="this.src='../assets/images/programs/fasion.jpg'">
+                        <div>
+                            <strong class="text-white d-block">${escapeHtml(c.title)}</strong>
+                            <small class="text-muted">/${escapeHtml(c.slug)}</small>
+                        </div>
+                    </div>
+                </td>
+                <td>${catBadge}</td>
+                <td>${escapeHtml(c.duration)}</td>
+                <td><small class="text-gold">${escapeHtml(c.course_fee || c.admission_fee || 'N/A')}</small></td>
+                <td>${statusBadge}</td>
+                <td class="text-center">${c.display_order}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-gold" onclick="editCourseRecord(${c.id})" title="Edit Course"><i class="fa-solid fa-pen"></i> Edit</button>
+                        <a href="../course-detail.php?slug=${encodeURIComponent(c.slug)}&preview=1" target="_blank" class="btn btn-outline-info" title="Preview"><i class="fa-solid fa-eye"></i></a>
+                        <button class="btn btn-outline-danger" onclick="deleteCourseRecord(${c.id}, '${escapeHtml(c.title)}')" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join("");
+}
+
+function openCourseModal(course) {
+    const form = document.getElementById("courseForm");
+    if (!form) return;
+
+    form.reset();
+    document.getElementById("courseFormId").value = course ? course.id : 0;
+    document.getElementById("courseFormTitle").value = course ? course.title : "";
+    document.getElementById("courseFormSlug").value = course ? course.slug : "";
+    document.getElementById("courseFormCategory").value = course ? course.category : "core_programme";
+    document.getElementById("courseFormCategoryBadge").value = course ? course.category_badge : "CORE PROGRAMME";
+    document.getElementById("courseFormStatus").value = course ? course.status : "published";
+    document.getElementById("courseFormDuration").value = course ? course.duration : "";
+    document.getElementById("courseFormAdmissionFee").value = course ? (course.admission_fee || "") : "";
+    document.getElementById("courseFormCourseFee").value = course ? (course.course_fee || "") : "";
+    document.getElementById("courseFormEligibility").value = course ? (course.eligibility || "") : "";
+    document.getElementById("courseFormAgeReq").value = course ? (course.age_requirement || "") : "";
+    document.getElementById("courseFormOrder").value = course ? course.display_order : (allAdminCourses.length + 1);
+    document.getElementById("courseFormShortDesc").value = course ? course.short_description : "";
+    document.getElementById("courseFormFullDesc").value = course ? course.full_description : "";
+    document.getElementById("courseFormMetaTitle").value = course ? (course.meta_title || "") : "";
+    document.getElementById("courseFormMetaDesc").value = course ? (course.meta_description || "") : "";
+
+    // Hero image preview
+    const heroPreview = document.getElementById("heroImagePreview");
+    if (heroPreview) {
+        heroPreview.src = course && course.hero_image ? ('../' + course.hero_image) : '../assets/images/programs/fasion.jpg';
+    }
+
+    // Clear dynamic containers
+    document.getElementById("modulesContainer").innerHTML = "";
+    document.getElementById("schedulesContainer").innerHTML = "";
+    document.getElementById("careersContainer").innerHTML = "";
+    document.getElementById("existingGalleriesContainer").innerHTML = "";
+
+    if (course) {
+        // Populate Modules
+        if (course.modules && course.modules.length > 0) {
+            course.modules.forEach(m => addModuleRow(m.module_name));
+        } else {
+            addModuleRow();
+        }
+
+        // Populate Schedules
+        if (course.schedules && course.schedules.length > 0) {
+            course.schedules.forEach(s => addScheduleRow(s.day_name, s.time_text, s.topic_text));
+        } else {
+            addScheduleRow();
+        }
+
+        // Populate Careers
+        if (course.careers && course.careers.length > 0) {
+            course.careers.forEach(cPath => addCareerRow(cPath.career_title));
+        } else {
+            addCareerRow();
+        }
+
+        // Populate Galleries
+        if (course.galleries && course.galleries.length > 0) {
+            renderExistingGalleries(course.galleries);
+        }
+    } else {
+        // Default rows for new course
+        addModuleRow();
+        addScheduleRow();
+        addCareerRow();
+    }
+
+    const modalEl = document.getElementById("courseModal");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
+}
+
+function editCourseRecord(id) {
+    const course = allAdminCourses.find(c => c.id === id);
+    if (course) {
+        openCourseModal(course);
+    }
+}
+
+function addModuleRow(value = "") {
+    const container = document.getElementById("modulesContainer");
+    if (!container) return;
+
+    const row = document.createElement("div");
+    row.className = "d-flex gap-2 align-items-center";
+    row.innerHTML = `
+        <input type="text" name="modules[]" class="form-control bg-dark text-white border-secondary form-control-sm" value="${escapeHtml(value)}" placeholder="e.g. Runway Walking & Posing">
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+    `;
+    container.appendChild(row);
+}
+
+function addScheduleRow(day = "", time = "", topic = "") {
+    const container = document.getElementById("schedulesContainer");
+    if (!container) return;
+
+    const idx = Date.now() + "_" + Math.floor(Math.random() * 10000);
+    const row = document.createElement("div");
+    row.className = "row g-2 align-items-center mb-2";
+    row.innerHTML = `
+        <div class="col-md-3">
+            <input type="text" name="schedules[${idx}][day_name]" class="form-control bg-dark text-white border-secondary form-control-sm" value="${escapeHtml(day)}" placeholder="Day e.g. Friday">
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="schedules[${idx}][time_text]" class="form-control bg-dark text-white border-secondary form-control-sm" value="${escapeHtml(time)}" placeholder="Time e.g. 3:00 PM - 5:00 PM">
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="schedules[${idx}][topic_text]" class="form-control bg-dark text-white border-secondary form-control-sm" value="${escapeHtml(topic)}" placeholder="Topic e.g. Cat Walk Practice">
+        </div>
+        <div class="col-md-1 text-end">
+            <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.closest('.row').remove()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    `;
+    container.appendChild(row);
+}
+
+function addCareerRow(value = "") {
+    const container = document.getElementById("careersContainer");
+    if (!container) return;
+
+    const row = document.createElement("div");
+    row.className = "d-flex gap-2 align-items-center";
+    row.innerHTML = `
+        <input type="text" name="careers[]" class="form-control bg-dark text-white border-secondary form-control-sm" value="${escapeHtml(value)}" placeholder="e.g. Professional Runway Model">
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+    `;
+    container.appendChild(row);
+}
+
+function renderExistingGalleries(galleries) {
+    const container = document.getElementById("existingGalleriesContainer");
+    if (!container) return;
+
+    container.innerHTML = galleries.map((g, idx) => `
+        <div class="col-md-3 col-6 text-center gallery-item-box">
+            <div class="position-relative border border-secondary rounded p-1 bg-dark">
+                <img src="../${g.image_path}" class="img-fluid rounded" style="height: 90px; width:100%; object-fit: cover;">
+                <input type="hidden" name="existing_galleries[${idx}][image_path]" value="${escapeHtml(g.image_path)}">
+                <input type="hidden" name="existing_galleries[${idx}][alt_text]" value="${escapeHtml(g.alt_text || '')}">
+                <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 p-0 px-1" onclick="this.closest('.gallery-item-box').remove()" title="Remove photo">&times;</button>
+            </div>
+        </div>
+    `).join("");
+}
+
+async function handleSaveCourse(e) {
+    e.preventDefault();
+
+    const form = document.getElementById("courseForm");
+    const saveBtn = document.getElementById("btnSaveCourseSubmit");
+    const originalHtml = saveBtn.innerHTML;
+
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Saving...`;
+
+    try {
+        const formData = new FormData(form);
+
+        const response = await fetch("../backend/admin/save-course.php", {
+            method: "POST",
+            body: formData
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            alert(result.message || "Course saved successfully.");
+            
+            // Close modal
+            const modalEl = document.getElementById("courseModal");
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) modal.hide();
+
+            // Refresh table
+            await loadAdminCourses();
+        } else {
+            alert(result.message || "Failed to save course.");
+        }
+    } catch (err) {
+        console.error("Save course error:", err);
+        alert("An error occurred while saving: " + err.message);
+    } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = originalHtml;
+    }
+}
+
+async function toggleCourseStatus(id) {
+    try {
+        const response = await fetch("../backend/admin/delete-course.php", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id, action: 'toggle_status' })
+        });
+        const result = await response.json();
+        if (result.success) {
+            await loadAdminCourses();
+        } else {
+            alert(result.message || "Status update failed.");
+        }
+    } catch (err) {
+        console.error("Status toggle error:", err);
+    }
+}
+
+async function deleteCourseRecord(id, title) {
+    if (!confirm(`Are you sure you want to delete '${title}'? This action cannot be undone.`)) return;
+
+    try {
+        const response = await fetch("../backend/admin/delete-course.php", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id, action: 'delete' })
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            alert(result.message || "Course deleted.");
+            await loadAdminCourses();
+        } else {
+            alert(result.message || "Delete failed.");
+        }
+    } catch (err) {
+        console.error("Delete course error:", err);
+        alert("An error occurred: " + err.message);
+    }
+}
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 }
 
