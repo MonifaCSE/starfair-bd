@@ -35,7 +35,7 @@ RedirectMatch 404 /\..*
     RewriteRule ^digital-marketing\.html$ course-detail.php?slug=digital-marketing [L]
 </IfModule>
 
-# Enforce clean HTTPS redirection
+# Enforce clean HTTPS redirection (Uncomment for Hostinger Production after SSL activation)
 # <IfModule mod_rewrite.c>
 #     RewriteEngine On
 #     RewriteCond %{HTTPS} off
